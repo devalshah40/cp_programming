@@ -1,6 +1,6 @@
 /*
 Given an arr[N] elements. Calculate no triplets of i,j,k 
-such that i<j<k and arr[i] < arr[j]< arr[k]
+such that i<j<k and arr[i] < arr[j] < arr[k]
 */
 
 let arr = [2, 6, 9, 4, 10];

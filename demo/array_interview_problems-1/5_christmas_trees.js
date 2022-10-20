@@ -1,6 +1,8 @@
 /*
 Problem Description
-You are given an array A consisting of heights of Christmas trees and an array B of the same size consisting of the cost of each of the trees (Bi is the cost of tree Ai, where 1 ≤ i ≤ size(A)), and you are supposed to choose 3 trees (let's say, indices p, q, and r), such that Ap < Aq < Ar, where p < q < r.
+You are given an array A consisting of heights of Christmas trees and an array B of the same size 
+consisting of the cost of each of the trees (Bi is the cost of tree Ai, where 1 ≤ i ≤ size(A)), 
+and you are supposed to choose 3 trees (let's say, indices p, q, and r), such that Ap < Aq < Ar, where p < q < r.
 The cost of these trees is Bp + Bq + Br.
 
 You are to choose 3 trees such that their total cost is minimum. Return that cost.
@@ -56,47 +58,49 @@ Explanation 2:
  This is the minimum cost that we can get.
 */
 
-let arr = [2, 6, 9, 4, 10];
-
+let arr = [1, 6, 4, 2, 6, 9];
+let costArr = [2, 5, 7, 3, 2, 7];
 //TC :- O(N^3) -> N^3 steps
 //SC :- O(1)
-function brutForceApproach(arr) {
-  let noOfTriplets = 0;
+function brutForceApproach(arr, costArr) {
+  let minCost = Number.POSITIVE_INFINITY;
   for (let i = 0; i < arr.length; i++) {
     for (let j = i + 1; j < arr.length; j++) {
       for (let k = j + 1; k < arr.length; k++) {
         if (arr[i] < arr[j] && arr[j] < arr[k]) {
-          noOfTriplets++;
+          let currentCost = costArr[i] + costArr[j] + costArr[k];
+          minCost = Math.min(currentCost, minCost);
         }
       }
     }
   }
-  return noOfTriplets;
+  return minCost === Number.POSITIVE_INFINITY ? -1 : minCost;
 }
 
 //TC :- O(n^2) -> N^3 steps
 //SC :- O(1)
-function efficientApproach(arr) {
-  let noOfTriplets = 0;
+function efficientApproach(arr, costArr) {
+  let minCost = Number.POSITIVE_INFINITY;
   for (let i = 1; i < arr.length - 1; i++) {
-    let left = 0;
+    let leftCost = Number.POSITIVE_INFINITY;
     for (let j = i - 1; j >= 0; j--) {
       if (arr[j] < arr[i]) {
-        left++;
+        leftCost = Math.min(costArr[j], leftCost);
       }
     }
-    let right = 0;
+    let rightCost = Number.POSITIVE_INFINITY;
     for (let j = i + 1; j < arr.length; j++) {
       if (arr[j] > arr[i]) {
-        right++;
+        rightCost = Math.min(costArr[j], rightCost);
       }
     }
-    noOfTriplets += left * right;
+    currentMinCost = leftCost + rightCost + costArr[i];
+    minCost = Math.min(currentMinCost, minCost);
   }
-  return noOfTriplets;
+  return minCost;
 }
 
-// let noOfTriplets = brutForceApproach(arr);
-let noOfTriplets = efficientApproach(arr);
+// let minCost = brutForceApproach(arr, costArr);
+let minCost = efficientApproach(arr, costArr);
 
-console.log(noOfTriplets);
+console.log(minCost);
