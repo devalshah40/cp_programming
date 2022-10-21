@@ -4,30 +4,22 @@ You are given an integer array A of length N comprising of 0's & 1's, and an int
 
 You have to tell all the indices of array A that can act as a center of 2 * B + 1 length 0-1 alternating subarray.
 
-A 0-1 alternating array is an array containing only 0's & 1's, and having no adjacent 0's or 1's. For e.g. arrays [0, 1, 0, 1], [1, 0] and [1] are 0-1 alternating, while [1, 1] and [0, 1, 0, 0, 1] are not.
-
-
+A 0-1 alternating array is an array containing only 0's & 1's, and having no adjacent 0's or 1's. For e.g. arrays [0, 1, 0, 1],
+ [1, 0] and [1] are 0-1 alternating, while [1, 1] and [0, 1, 0, 0, 1] are not.
 
 Problem Constraints
 1 <= N <= 103
 
 A[i] equals to 0 or 1.
-
 0 <= B <= (N - 1) / 2
-
-
 
 Input Format
 First argument is an integer array A.
 
 Second argument is an integer B.
 
-
-
 Output Format
 Return an integer array containing indices(0-based) in sorted order. If no such index exists, return an empty integer array.
-
-
 
 Example Input
 Input 1:
@@ -39,7 +31,6 @@ Input 2:
  A = [0, 0, 0, 1, 1, 0, 1]
  B = 0 
 
-
 Example Output
 Output 1:
 
@@ -47,7 +38,6 @@ Output 1:
 Output 2:
 
  [0, 1, 2, 3, 4, 5, 6]
-
 
 Example Explanation
 Explanation 1:
@@ -59,17 +49,20 @@ Explanation 2:
 
  Each index in the array acts as the center of alternating sequences of lengths 1.
 */
-// let arr = [1, 0, 1, 0, 1, 0];
-// let k = 1;
-let arr = [0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1];
+let arr = [1, 0, 1, 0, 1, 0];
 let k = 1;
+// let arr = [0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1];
+// let k = 1;
 
 let n = arr.length;
 let ans = [];
 let next = 0;
 let len = 0;
 let requiredLen = 2 * Number(k) + 1;
-
+/*
+ For each element find next expected element in next variable. If current element is next element then increase length.
+ If length is greater then requiredLength , add index in ans arr. 
+*/
 let i = 0;
 while (i < n) {
   if (i > 0 && arr[i] !== next) {
