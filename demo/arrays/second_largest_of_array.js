@@ -49,6 +49,7 @@ Explanation 2:
 */
 
 let A = [13, 7, 16, 18, 14, 17, 18, 8, 10];
+// let A = [1, 2, 2, 2];
 let secondLargest = -1;
 let largest = -1;
 for (let i = 0; i < A.length; i++) {

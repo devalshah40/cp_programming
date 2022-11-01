@@ -1,8 +1,7 @@
 /*
   Problem Description
-Given an integer A, generate a square matrix filled with elements from 1 to A2 in spiral order and return the generated square matrix.
-
-
+Given an integer A, generate a square matrix filled with 
+elements from 1 to A2 in spiral order and return the generated square matrix.
 
 Problem Constraints
 1 <= A <= 1000

@@ -1,26 +1,19 @@
 /*
 Q1. Max Min of an Array
-Unsolved
-character backgroundcharacter
-Stuck somewhere?
-Ask for help from a TA and get it resolved.
-Get help from TA.
-Problem Description
-Given an array A of size N. You need to find the sum of Maximum and Minimum element in the given array.
 
+Problem Description
+Given an array A of size N. 
+You need to find the sum of Maximum and Minimum element in the given array.
 
 Problem Constraints
 1 <= N <= 105
 -109 <= A[i] <= 109
 
-
 Input Format
 First argument A is an integer array.
 
-
 Output Format
 Return the sum of maximum and minimum element of the array
-
 
 Example Input
 Input 1:
@@ -49,29 +42,20 @@ Explanation 2:
 Maximum Element is 4 and Minimum element is 1. (4 + 1) = 5.
 */
 
-// // let arr = [-2, 1, -4, 5, 3];
-// let arr = [1, 5, 9];
+// let arr = [-2, 1, -4, 5, 3];
+let arr = [1, 5, 9];
 
-// let maxNumber = Number.NEGATIVE_INFINITY;
-// let minNumber = Number.POSITIVE_INFINITY;
+let maxNumber = Number.NEGATIVE_INFINITY;
+let minNumber = Number.POSITIVE_INFINITY;
 
-// for (let i = 0; i < arr.length; i++) {
-//   if (arr[i] > maxNumber) {
-//     maxNumber = arr[i];
-//   }
-//   if (arr[i] < minNumber) {
-//     minNumber = arr[i];
-//   }
-// }
-
-// console.log(maxNumber + minNumber);
-
-let num = 2;
-let arr = [1, 2, 2];
-let numOfOccurence = 0;
 for (let i = 0; i < arr.length; i++) {
-  if (arr[i] === num) {
-    numOfOccurence++;
+  if (arr[i] > maxNumber) {
+    maxNumber = arr[i];
+  }
+  if (arr[i] < minNumber) {
+    minNumber = arr[i];
   }
 }
-console.log(numOfOccurence);
+
+console.log(maxNumber + minNumber);
+

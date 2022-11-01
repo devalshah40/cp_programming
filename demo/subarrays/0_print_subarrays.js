@@ -1,5 +1,6 @@
-let arr = [1, 2, 3, 4, 5];
+// let arr = [1, 2, 3, 4, 5];
 
+let arr = [1, 0, 1];
 // for (let start = 0; start < arr.length; start++) {
 //   for (let end = start; end < arr.length; end++) {
 //     for (let i = start; i <= end; i++) {
@@ -19,4 +20,4 @@ for (let start = 0; start < arr.length; start++) {
     totalArrays.push(subArray);
   }
 }
-console.log(totalArrays);
+console.table(totalArrays);
