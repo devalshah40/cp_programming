@@ -58,6 +58,30 @@
 //   B--;
 // }
 // console.log(ans);
+/*
+8 9 20 
+2 5 6 
+1 6 5 
+3 1 5 4 6 
+2 8 6 
+2 2 2 
+3 4 4 2 8 
+1 9 4 
+2 7 4 
+1 2 2 
+3 2 8 3 6 
+3 1 5 7 4 
+2 5 3 
+3 6 6 5 5 
+4 8 3 2 8 
+3 5 3 5 4 
+2 1 5 
+4 2 9 2 9 
+1 4 2 
+3 6 1 3 1 
+3 8 7 3 2 
+*/
+
 const readline = require('readline');
 
 const r1 = readline.createInterface({
@@ -139,6 +163,6 @@ r1.on('close', function () {
         break;
     }
   }
-  console.log(matrix);
-  console.log(operationsArr);
+  // console.log(matrix);
+  // console.log(operationsArr);
 });
