@@ -1,6 +1,7 @@
 /*
 Problem Description
-You are given an array A of length N and Q queries given by the 2D array B of size Q*2. Each query consists of two integers B[i][0] and B[i][1].
+You are given an array A of length N and Q queries given by the 2D array B of size Q*2. 
+Each query consists of two integers B[i][0] and B[i][1].
 For every query, the task is to find the count of even numbers in the range A[B[i][0]…B[i][1]].
 
 Input Format
@@ -35,6 +36,14 @@ For Input 2:
 The subarray for the first query is [2, 1, 8, 3] which contains 2 even numbers.
 The subarray for the second query is [8, 3, 9] which contains 1 even number.
 
+*/
+
+/*
+Create a prefix array pref[] where pref[i+1] will store the count of even numbers in the subarray A[0…i]. 
+Now, the count of even numbers in the range [L, R] can be easily calculated in O(1) as pref[R + 1] – pref[L].
+
+Time Complexity : O(N + Q)
+Space Complexity : O(N + Q)
 */
 let arr = [3, 1, 5, 7, 5, 2];
 let n = arr.length;

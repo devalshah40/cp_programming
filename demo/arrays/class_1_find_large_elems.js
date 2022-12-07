@@ -47,18 +47,48 @@ Approach 1 :-
   Find max number. 
   Count frequency of max number like = 3
   Subtract max frequence from total array length
+  // 2N iterations so 
+  // TC :- O(N)
+  // SC :- O(1)
 */
-let largest = Number.NEGATIVE_INFINITY;
-for (let index = 0; index < arr.length; index++) {
-  if (arr[index] > largest) {
-    largest = arr[index];
+function findLargeElement(arr) {
+  let largest = Number.NEGATIVE_INFINITY;
+  for (let index = 0; index < arr.length; index++) {
+    if (arr[index] > largest) {
+      largest = arr[index];
+    }
   }
-}
-let frequencyLargest = 0;
-for (let index = 0; index < arr.length; index++) {
-  if (arr[index] === largest) {
-    frequencyLargest++;
+  let frequencyLargest = 0;
+  for (let index = 0; index < arr.length; index++) {
+    if (arr[index] === largest) {
+      frequencyLargest++;
+    }
   }
+
+  return arr.length - frequencyLargest;
 }
 
-let answer = arr.length - frequencyLargest;
+/*
+Approach 2 :- 
+  Find max number and frequency in single loop
+  // TC :- O(N)
+  // SC :- O(1)
+*/
+function findLargeElementSingleLoop(arr) {
+  let largest = Number.NEGATIVE_INFINITY;
+  let frequencyLargest = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > largest) {
+      largest = arr[i];
+      frequencyLargest = 1;
+    } else if (arr[i] === largest) {
+      frequencyLargest++;
+    }
+  }
+
+  return arr.length - frequencyLargest;
+}
+
+// let ans = findLargeElement(arr);
+let ans = findLargeElementSingleLoop(arr);
+console.log(ans);
