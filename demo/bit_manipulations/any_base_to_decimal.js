@@ -40,10 +40,21 @@ The decimal 10 in base 2 is 1010.
 For Input 2:
 The decimal 8 in base 3 is 22.
 */
+/*
+We extract 1 digit from the end of the number A and 
+multiply it with the respective power of the given base 
+B and finally add it to the answer. This process continues 
+until the number A becomes 0, i.e. all the digits of A have 
+been extracted.
+
+Time Complexity : O(logA)
+Space Complexity : O(1)
+*/
 // let number = 101;
 // let baseValue = 2;
 let number = 22;
 let baseValue = 3;
+
 let ans = 0;
 let multiplier = 1;
 
@@ -55,3 +66,17 @@ while (number > 0) {
   number = parseInt(number / 10);
 }
 console.log(ans);
+/*
+public class Solution {
+    public int solve(int A, int B) {
+        int res = 0 , multiplier = 1;
+        while(A > 0){
+            int digit = A % 10;
+            res += multiplier * digit;
+            multiplier *= B;
+            A /= 10;
+        }
+        return res;
+    }
+}
+*/

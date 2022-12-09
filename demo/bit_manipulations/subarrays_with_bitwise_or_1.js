@@ -41,8 +41,8 @@ The subarrays are :- [1], [0], [1, 0]
 Except the subarray [0] all the other subarrays has a Bitwise OR = 1
 */
 
-// let arrLength = 3;
-// let arr = [1, 0, 1];
+let arrLength = 4;
+let arr = [1, 0, 0, 1];
 
 // let arr = [1, 0, 1];
 // let arrLength = 3;
@@ -50,8 +50,8 @@ Except the subarray [0] all the other subarrays has a Bitwise OR = 1
 // let arr = [0, 1, 1, 0, 1];
 // let arrLength = 5;
 // ans = 13
-let arr = [1, 0, 0, 1, 0, 0, 1];
-let arrLength = 7;
+// let arr = [1, 0, 0, 1, 0, 0, 1];
+// let arrLength = 7;
 // ans 22
 
 // let arr = [0, 1, 1, 0, 1];
@@ -75,23 +75,26 @@ function brutForce(arrLength, arr) {
 }
 /*
 My approach :-
-For  1001001 For every 1, subarray with Bitwise 1 will be total elements from that that index to end index. 
+For  1001001 For every 1, subarray with Bitwise 1 will be total elements 
+from that that index to end index. 
 So for 1st 1, sum is 7, 2nd 1, sum is 1001 so 4 etc..
-For every 0, count zeros until found 1. Then at 1, calculate subarray with numOfZeros until 1 into back elements from 1. 
+For every 0, count zeros until found 1. 
+Then at 1, calculate subarray with numOfZeros until 1 into back elements from 1. 
 This will count to total 1 elements.
 */
+// this is forward only approach
 function efficientMyApproach(arrLength, arr) {
   let count = 0;
 
   let countZeros = 0;
   for (let index = 0; index < arrLength; index++) {
     let val = arr[index];
-    let backElements = arrLength - index;
+    let nextElements = arrLength - index;
 
     if (val === 1) {
-      let totalZeroCount = countZeros * backElements;
+      let totalZeroCount = countZeros * nextElements;
       countZeros = 0;
-      count += backElements + totalZeroCount;
+      count += nextElements + totalZeroCount;
     } else {
       countZeros++;
     }
@@ -112,6 +115,7 @@ so ans += j for that particular i.
 My understanding :- For every index i with , previous subarray count will be i+1 which have OR is 1.
 like [1 0 0 1 0 0 1] -> for 3rd index with 1, previous subarray OR will be 1 and have 
 */
+//backward only approach
 function efficientScalerApproach(arrLength, arr) {
   let last = 0;
   let ans = 0;
@@ -136,7 +140,7 @@ function efficientScalerApproach(arrLength, arr) {
 //   return count;
 // }
 
-let ans = efficientScalerApproach(arrLength, arr);
+// let ans = efficientScalerApproach(arrLength, arr);
 // let ans = brutForce(arrLength, arr);
-// let ans = efficientMyApproach(arrLength, arr);
+let ans = efficientMyApproach(arrLength, arr);
 console.log(ans);

@@ -1,6 +1,7 @@
 /*
 Problem Description
-Given two integers A and B. Find the minimum value (A ⊕ X) + (B ⊕ X) that can be achieved for any X.
+Given two integers A and B. 
+Find the minimum value (A ⊕ X) + (B ⊕ X) that can be achieved for any X.
 
 where P ⊕ Q is the bitwise XOR operation of the two numbers P and Q.
 
@@ -47,8 +48,10 @@ Similarly, if for both A and B the bit was unset, we unset it for X as well. XOR
 Now try to think if the bit is set for one and unset for other what will X and our result be.
 
 That's right doesnt matter if the bit is set or unset that bit will be added to our answer as either A ^ X != 0 or B ^ X != 0 for that bit.
-Now did you take the observation? If we are adding a bit to out answer if that bit is set for one number and unset for another,
+Now did you take the observation? If we are adding a bit to our answer if that bit is set for one number and unset for another,
 then it is A ^ B operation itself. So A ^ B is our answer.
+
+https://www.geeksforgeeks.org/choose-x-such-that-a-xor-x-b-xor-x-is-minimized/
 */
 let x = 3;
 let y = 3;
@@ -65,3 +68,5 @@ for (let k = 1; k < x + y; k++) {
   }
 }
 console.log(min);
+
+// let ans = x * (x & y) + y * (x & y);

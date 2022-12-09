@@ -49,7 +49,15 @@ Output 1:
 Output 2:
 22
 
+/*
+Step 1:- Divide the decimal number to be converted by the value of the new base.
 
+Step 2:- Get the remainder from Step 1 as the rightmost digit (least significant digit) of new base number.
+
+Step 3:− Divide the quotient of the previous divide by the new base.
+
+Step 4 − Record the remainder from Step 3 as the next digit (to the left) of the new base number.
+*/
 */
 // let number = 11;
 // let baseValue = 2;
@@ -68,3 +76,19 @@ while (number > 0) {
   number = parseInt(number / baseValue);
 }
 console.log(ans);
+
+/*
+public class Solution {
+    public int DecimalToAnyBase(int A, int B) {
+        int ans = 0;
+        int pow = 1;
+        while(A > 0){
+            int digit = A%B;
+            A /= B;
+            ans += digit*pow;
+            pow *= 10;
+        }
+        return ans;
+    }
+}
+*/
