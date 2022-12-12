@@ -130,6 +130,7 @@ function reverseBit2ndApproach(A) {
   A = BigInt(A);
   let ans = 0n;
   for (let i = 0; i < 32; i++) {
+    // If ith bit is set
     if (A & (1n << BigInt(i))) {
       let temp = 1n << (31n - BigInt(i));
       ans += temp;
@@ -144,7 +145,9 @@ function reverseBit2ndApproach(A) {
 function reverseBitScaler(A) {
   let revnum = 0;
   for (let i = 0; i < 32; i++) {
+    // If ith bit is set
     if (num & (1 << i)) {
+      // set ith bit
       revnum |= 1 << (31 - i);
     }
   }

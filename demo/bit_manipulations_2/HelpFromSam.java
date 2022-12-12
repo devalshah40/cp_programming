@@ -52,6 +52,15 @@ class HelpFromSam {
     /*
      * This one is better approach compared to scaler
      */
+    /*
+     * we have to devide A (by 2) or (subtract by 1) everytime. till it reaches 0.
+     * when we are deviding by 2 :-
+     * if it is even, we get mod 0. i.e no need of help from Sam.
+     * if it is odd, we get mod 1. i.e need help of Sam. (1’s are need of help from
+     * sam.)
+     * it is just converting the decimal to binary number.
+     * No. of 1’s are the sam helps took by Alex.
+     */
     public static int solve(int A) {
         int count = 0;
 
@@ -103,7 +112,9 @@ class HelpFromSam {
      * cnt++
      * return cnt
      * Time Complexity : O( log(A) )
+     * 
      */
+
     public static int solveScaler(int A) {
         int ans = 0;
         while (A > 0) {
@@ -116,7 +127,7 @@ class HelpFromSam {
     }
 
     public static void main(String[] args) {
-        int A = 5;
+        int A = 6;
         int ans = solve(A);
         System.out.println(ans);
     }

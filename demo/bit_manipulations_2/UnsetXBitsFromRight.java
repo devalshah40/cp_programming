@@ -55,11 +55,11 @@ class UnsetXBitsFromRight {
     }
 
     /*
-     Try using for loops iterate from 0 to B-1 and do the needful.
-        Initialise a variable ans = A. 
-        Iterate from i = 0 to i = B - 1. 
-        If ith bit was set in A that is (A & (1<<i)) != 0, ans -= (1<<i), 
-        unset it from the answer. 
+     * Try using for loops iterate from 0 to B-1 and do the needful.
+     * Initialise a variable ans = A.
+     * Iterate from i = 0 to i = B - 1.
+     * If ith bit was set in A that is (A & (1<<i)) != 0, ans -= (1<<i),
+     * unset it from the answer.
      */
     public static Long solveScaler(long N, int i) {
 
@@ -81,3 +81,15 @@ class UnsetXBitsFromRight {
         System.out.println(ans);
     }
 }
+
+// public class Solution {
+// public long solve(long A, int B) {
+
+// long ans=A;
+// for(int i=0;i<B;i++){
+// if((A & (1L<<i)) > 0)
+// ans -= (1L<<i);
+// }
+// return ans;
+// }
+// }

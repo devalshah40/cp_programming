@@ -48,12 +48,26 @@ Explanation 2:
 =>      11000000000000000000000000000000
 */
 class ReverseBit {
+  public long reverse(long A) {
+    int count = 0;
+    long res = 0;
+    long bit = 0;
+    while (count <= 32) {
+      bit = A % 2;
+      A = A / 2;
+      count++;
+      res = res + (bit << (32 - count));
+    }
+    return res;
+  }
+
   /*
    * 
    */
   public static long solve(long A) {
     long ans = 0;
     for (int i = 0; i < 32; i++) {
+      // If ith bit is set
       if ((A & (1L << i)) != 0) {
         ans += 1L << (31 - i);
       }
@@ -127,18 +141,36 @@ class ReverseBit {
     long rev = 0;
 
     for (int i = 0; i < 32; i++) {
-      rev <<= 1;
+      rev = rev << 1;
+      // If ith bit is set
       if ((A & (1 << i)) != 0)
-        rev |= 1;
+        rev = rev | 1;
     }
 
     return rev;
   }
 
   public static void main(String[] args) {
-    long A = 3;
-    long ans = solve(A);
-    // long ans = solveScaler(A);
+    // long A = 3;
+    long A = 3221225472L;
+    // long A = 12;
+    // long ans = solve(A);
+    long ans = solveScaler(A);
     System.out.println(ans);
   }
 }
+/*
+ * module.exports = {
+ * //param a : integer
+ * //return an integer
+ * reverse : function(num){
+ * var revnum = 0;
+ * for( var i = 0; i < 32; i++ ) {
+ * if( num&1<<i)
+ * revnum |= 1<<(31-i);
+ * }
+ * return revnum>>>0;
+ * }
+ * };
+ * 
+ */

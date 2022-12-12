@@ -117,7 +117,7 @@ function sumTwoElement(A, B) {
     maxStrLen--;
   }
   // console.log(maxStr);
-  maxStr = carry ? carry + '' + maxStr.join('') : maxStr.toString('');
+  maxStr = carry ? carry + '' + maxStr.join('') : maxStr.join('');
   // console.log(maxStr);
   return maxStr;
 }

@@ -70,6 +70,22 @@ class NthMagicNumber {
     }
 
     /*
+     * The whole problem could be divided into two steps.
+     * 
+     * 1) Convert the given number A in Binary.
+     * 2) Multiply each binary number in powers of 5.
+     * 
+     * // * For example.
+     * // * A A in Binary Ans in powers of 5
+     * // * 1 1 5^1=5
+     * // * 2 10 5^2=25
+     * // * 3 11 5^2+5^1=30
+     * // * 4 100 5^3=125
+     * // * 5 101 5^3+5^1=130
+     * // * And so on…
+     * // * 10 1010 5^4+5^2=650
+     */
+    /*
      * As we know **5n > 51 + 52 + ... + 5n-1**
      * So, we can find the sum of all subsets of the first 13 power of 5.
      * since no element will overlap, we will have 2^13 - 1 elements or 8000
