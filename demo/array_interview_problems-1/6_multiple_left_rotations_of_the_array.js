@@ -5,7 +5,6 @@ Given an array of integers A and multiple values in B, which represents the numb
 Find the rotated array for each value and return the result in the from of a matrix where ith row represents the rotated array for the ith value in B.
 
 
-
 Problem Constraints
 1 <= length of both arrays <= 2000 -10^9 <= A[i] <= 10^9 0 <= B[i] <= 2000
 

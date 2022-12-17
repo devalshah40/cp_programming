@@ -56,5 +56,18 @@ function subarraySum(arr) {
   }
   return totalSum;
 }
+
+function subarraySumTry(A) {
+  let totalSum = 0;
+  let currentSum = 0;
+  let n = A.length;
+  for (let i = 0; i < n; i++) {
+    let currentElement = (i + 1) * A[i];
+    totalSum += currentSum + currentElement;
+    currentSum += currentElement;
+  }
+  return totalSum;
+}
 let arr = [1, 2, 3];
-console.log(subarraySum(arr));
+// console.log(subarraySum(arr));
+console.log(subarraySumTry(arr));

@@ -35,17 +35,17 @@ Explanation
 //param A : array of integers
 //return an integer
 function subarrayString(str) {
-  let strLength = str.length;
-  if (strLength == 0) {
+  let N = str.length;
+  if (N == 0) {
     return 0;
   }
-  let subStringLength = 0;
-  for (let i = 0; i < strLength; i++) {
+  let len = 0;
+  for (let i = 0; i < N; i++) {
     if (['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'].includes(str[i])) {
-      subStringLength = (subStringLength + strLength - i) % 10003;
+      len += N - i;
     }
   }
-  return subStringLength;
+  return len % 10003;
 }
 let string = 'ABEC';
 console.log(subarrayString(string));

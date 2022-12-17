@@ -146,40 +146,10 @@ function maxProfitPrefixSum(arr) {
     if (rightMax[i] > arr[i]) {
       const currentProfit = rightMax[i] - arr[i];
       // console.log(arr[i], ' ', currentProfit);
-      if (currentProfit > maxProfit) {
-        maxProfit = currentProfit;
-      }
+      maxProfit = Math.max(currentProfit, maxProfit);
     }
   }
   return maxProfit;
-}
-
-function maxProfitRec(price, start, end) {
-  // If the stocks can't be bought
-  if (end <= start) return 0;
-  // Initialise the profit
-  let profit = 0;
-  // The day at which the stock
-  // must be bought
-  for (let i = start; i < end; i++) {
-    // The day at which the
-    // stock must be sold
-    for (let j = i + 1; j <= end; j++) {
-      // If buying the stock at ith day and
-      // selling it at jth day is profitable
-      if (price[j] > price[i]) {
-        // Update the current profit
-        let curr_profit =
-          price[j] -
-          price[i] +
-          maxProfit(price, start, i - 1) +
-          maxProfit(price, j + 1, end);
-        // Update the maximum profit so far
-        profit = Math.max(profit, curr_profit);
-      }
-    }
-  }
-  return profit;
 }
 
 //param A : array of integers
@@ -192,10 +162,9 @@ function maxProfitCarryForward(A) {
   let min = A[0];
   for (i = 1; i < A.length; i++) {
     let cur_profit = A[i] - min;
-    if (cur_profit > maxprofit) {
-      maxprofit = cur_profit;
-    }
-    if (min > A[i]) {
+    cur_profit = Math.max(curr_profit, maxprofit);
+
+    if (A[i] < min) {
       min = A[i];
     }
   }

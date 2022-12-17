@@ -183,18 +183,10 @@ let n = arr.length;
 let min = Number.POSITIVE_INFINITY;
 let max = Number.NEGATIVE_INFINITY;
 
-max = arr.reduce(
-  (previousValue, currentValue) =>
-    previousValue > currentValue ? previousValue : currentValue,
-  max
-);
+max = Math.max(...arr);
 console.log(max);
 
-min = arr.reduce(
-  (previousValue, currentValue) =>
-    previousValue < currentValue ? previousValue : currentValue,
-  min
-);
+min = Math.min(...arr);
 console.log(min);
 
 let ans = n;
@@ -214,7 +206,7 @@ for (let i = 0; i < n; i++) {
 
   if (isValueExist && lastMax !== -1 && lastMin !== -1) {
     currentDiff = Math.abs(lastMax - lastMin) + 1;
-    ans = currentDiff < ans ? currentDiff : ans;
+    ans = Math.max(currentDiff, ans);
   }
 }
 console.log(ans);

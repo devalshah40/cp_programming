@@ -49,13 +49,20 @@ Explanation 3:
  (i,j) = (2,3)
 */
 let arr = [1, 2, 5, 8, 3, 4, 8, 6, 8];
+let B = 4;
 
-let isGoodPair = false;
-for (let i = 0; i < arr.length; i++) {
-  for (let j = j + 1; j < arr.length; j++) {
-    if (arr[i] + arr[j] === B) {
-      isGoodPair = true;
-      break;
+function isGoodPair(arr, B) {
+  let isGoodPair = false;
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = j + 1; j < arr.length; j++) {
+      if (arr[i] + arr[j] === B) {
+        isGoodPair = true;
+        break;
+      }
     }
   }
+  return isGoodPair;
 }
+
+let ans = isGoodPair(arr, B);
+console.log(ans);

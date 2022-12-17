@@ -54,15 +54,16 @@ function missingTwoNumbers(A) {
   let maxBitLength = parseInt(Math.log2(ans));
   let setBitPosition = 0;
   for (let i = 0; i <= maxBitLength; i++) {
-    if (A[i] & (1 << i)) {
+    if (ans & (1 << i)) {
       setBitPosition = i;
+      break;
     }
   }
 
   let s1 = 0;
   let s2 = 0;
   for (let i = 0; i < A.length; i++) {
-    if (A[setBitPosition] & (1 << setBitPosition)) {
+    if (A[i] & (1 << setBitPosition)) {
       s1 = s1 ^ A[i];
     } else {
       s2 = s2 ^ A[i];
@@ -71,6 +72,7 @@ function missingTwoNumbers(A) {
   return [s1, s2];
 }
 
-let A = [1, 2, 3, 1, 2, 4];
+// let A = [1, 2, 3, 1, 2, 4];
+let A = [770, 290, 609, 373, 478, 174, 290, 478, 609, 373, 71, 174];
 let ans = missingTwoNumbers(A);
 console.log(ans);

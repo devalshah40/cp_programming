@@ -80,11 +80,11 @@ let ans = [];
 let n = arr.length;
 ans.push(arr[n - 1]);
 
-let mx = arr[n - 1];
+let max = arr[n - 1];
 
 for (let i = n - 2; i >= 0; i--) {
-  if (mx < arr[i]) {
-    mx = arr[i];
+  if (arr[i] > max) {
+    max = arr[i];
     ans.push(arr[i]);
   }
 }

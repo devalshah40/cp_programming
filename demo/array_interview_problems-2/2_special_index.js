@@ -49,48 +49,107 @@ Therefore, the required output is 3.
 // let arr = [2, 1, 6, 4];
 let arr = [1, 2, 3, 7, 1, 2, 3];
 // let arr = [1, 1, 1];
-let specialIndexArr = [];
-let n = arr.length;
+function classRoomApproach(arr) {
+  let specialIndexArr = [];
+  let n = arr.length;
 
-let prefixSumEven = [arr[0]];
-for (let i = 1; i < n; i++) {
-  const value = arr[i];
-  if (i % 2 === 0) {
-    prefixSumEven[i] = prefixSumEven[i - 1] + arr[i];
-  } else {
-    prefixSumEven[i] = prefixSumEven[i - 1];
+  let prefixSumEven = [arr[0]];
+  for (let i = 1; i < n; i++) {
+    const value = arr[i];
+    if (i % 2 === 0) {
+      prefixSumEven[i] = prefixSumEven[i - 1] + arr[i];
+    } else {
+      prefixSumEven[i] = prefixSumEven[i - 1];
+    }
   }
-}
-console.log(prefixSumEven);
-// 2,2,8,8
+  console.log(prefixSumEven);
+  // 2,2,8,8
 
-let prefixSumOdd = [0];
-for (let i = 1; i < n; i++) {
-  if (i % 2 !== 0) {
-    prefixSumOdd[i] = prefixSumOdd[i - 1] + arr[i];
-  } else {
-    prefixSumOdd[i] = prefixSumOdd[i - 1];
+  let prefixSumOdd = [0];
+  for (let i = 1; i < n; i++) {
+    if (i % 2 !== 0) {
+      prefixSumOdd[i] = prefixSumOdd[i - 1] + arr[i];
+    } else {
+      prefixSumOdd[i] = prefixSumOdd[i - 1];
+    }
   }
-}
-console.log(prefixSumOdd);
-// 0,1,1,5
+  console.log(prefixSumOdd);
+  // 0,1,1,5
 
-for (let i = 0; i < n; i++) {
-  if (i === 0) {
-    //calculate oddSum & evenSum
-    oddSum = prefixSumEven[n - 1] - prefixSumEven[0];
-    evenSum = prefixSumOdd[n - 1] - prefixSumOdd[0];
-  } else if (i === n - 1) {
-    //calculate oddSum & evenSum
-    oddSum = prefixSumOdd[i - 1];
-    evenSum = prefixSumEven[i - 1];
-  } else {
-    oddSum = prefixSumOdd[i - 1] + (prefixSumEven[n - 1] - prefixSumEven[i]);
-    evenSum = prefixSumEven[i - 1] + (prefixSumOdd[n - 1] - prefixSumOdd[i]);
+  for (let i = 0; i < n; i++) {
+    if (i === 0) {
+      //calculate oddSum & evenSum
+      oddSum = prefixSumEven[n - 1] - prefixSumEven[0];
+      evenSum = prefixSumOdd[n - 1] - prefixSumOdd[0];
+    } else if (i === n - 1) {
+      //calculate oddSum & evenSum
+      oddSum = prefixSumOdd[i - 1];
+      evenSum = prefixSumEven[i - 1];
+    } else {
+      oddSum = prefixSumOdd[i - 1] + (prefixSumEven[n - 1] - prefixSumEven[i]);
+      evenSum = prefixSumEven[i - 1] + (prefixSumOdd[n - 1] - prefixSumOdd[i]);
+    }
+    console.log(i, ' ', oddSum, ' ', evenSum);
+    if (oddSum === evenSum) {
+      specialIndexArr.push(i);
+    }
   }
-  console.log(i, ' ', oddSum, ' ', evenSum);
-  if (oddSum === evenSum) {
-    specialIndexArr.push(i);
-  }
+  return specialIndexArr;
 }
+
+function efficientApproach(arr) {
+  let specialIndexArr = [];
+  let n = arr.length;
+
+  let prefixSumOddEven = [arr[0]];
+  for (let i = 1; i < n; i++) {
+    if (i % 2 === 0) {
+      if (i - 2 >= 0) {
+        prefixSumOddEven[i] = prefixSumOddEven[i - 2] + arr[i];
+      } else {
+        prefixSumOddEven[i] = arr[i];
+      }
+    } else {
+      if (i - 2 >= 0) {
+        prefixSumOddEven[i] = prefixSumOddEven[i - 2] + arr[i];
+      } else {
+        prefixSumOddEven[i] = arr[i];
+      }
+    }
+  }
+  // [1, 2, 3, 7, 1, 2, 3]
+  // [1, 2, 4, 9, 5, 11, 8]
+  console.log(prefixSumOddEven);
+  // even
+  // 2,2,8,8
+  // odd
+  // 0,1,1,5
+
+  // for (let i = 0; i < n; i++) {
+  //   if (i === 0) {
+  //     //calculate oddSum & evenSum
+  //     oddSum = prefixSumOddEven[n - 1] - prefixSumOddEven[0];
+  //     evenSum = prefixSumOddEven[n - 1] - prefixSumOddEven[0];
+  //   } else if (i === n - 1) {
+  //     //calculate oddSum & evenSum
+  //     oddSum = prefixSumOddEven[i - 1];
+  //     evenSum = prefixSumOddEven[i - 1];
+  //   } else {
+  //     oddSum =
+  //       prefixSumOddEven[i - 1] +
+  //       (prefixSumOddEven[n - 1] - prefixSumOddEven[i]);
+  //     evenSum =
+  //       prefixSumOddEven[i - 1] + (prefixSumOddEven[n - 1] - prefixSumOdd[i]);
+  //   }
+  //   console.log(i, ' ', oddSum, ' ', evenSum);
+  //   if (oddSum === evenSum) {
+  //     specialIndexArr.push(i);
+  //   }
+  // }
+  return specialIndexArr;
+}
+
+// let specialIndexArr = classRoomApproach(arr);
+let specialIndexArr = efficientApproach(arr);
+
 console.log(specialIndexArr);

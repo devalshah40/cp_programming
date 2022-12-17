@@ -42,7 +42,7 @@ Except the subarray [0] all the other subarrays has a Bitwise OR = 1
 */
 
 let arrLength = 4;
-let arr = [1, 0, 0, 1];
+let arr = [1, 0, 1];
 
 // let arr = [1, 0, 1];
 // let arrLength = 3;
@@ -113,17 +113,25 @@ If j is the first index that has B[j] = 1 to the left of i (including i), then i
 so ans += j for that particular i.
 
 My understanding :- For every index i with , previous subarray count will be i+1 which have OR is 1.
-like [1 0 0 1 0 0 1] -> for 3rd index with 1, previous subarray OR will be 1 and have 
+like [1 1 1 1 0 0 1] -> for 0th index with 1, previous subarray OR including himself will be [1] sp 1 OR ans. 
+For 1st index with 1,  previous subarray OR including himself  [1 1] so 2 OR will be added to answer
+For 2nd index with 1,  previous subarray OR including himself  [1 1 1] so 3 OR will be added to answer
+For 3rd index with 1,  previous subarray OR including himself  [1 1 1 1] so 4 OR will be added to answer
+For 4th index with 0,  previous subarray OR including himself  [1 1 1 1 0]. Here we don't add himself in answer but we will add last 1's OR to answer.
+so 4 will be added to answer.
+For 5th index with 0,  previous subarray OR including himself  [1 1 1 1 0 0]. Here we don't add himself in answer but we will add last 1's OR to answer.
+so 4 will be added to answer.
+For 6th index with 1,  previous subarray OR including himself  [1 1 1 1 0 0 1] 7 OR will be added to answer
 */
 //backward only approach
 function efficientScalerApproach(arrLength, arr) {
-  let last = 0;
+  let prevSubArrayCountWithOneOR = 0;
   let ans = 0;
   for (let i = 0; i < arrLength; i++) {
     if (arr[i] == 1) {
-      last = i + 1;
+      prevSubArrayCountWithOneOR = i + 1;
     }
-    ans += last;
+    ans += prevSubArrayCountWithOneOR;
   }
   return ans;
 }
@@ -140,7 +148,7 @@ function efficientScalerApproach(arrLength, arr) {
 //   return count;
 // }
 
-// let ans = efficientScalerApproach(arrLength, arr);
-// let ans = brutForce(arrLength, arr);
-let ans = efficientMyApproach(arrLength, arr);
+let ans = efficientScalerApproach(arr.length, arr);
+// let ans = brutForce(arr.length, arr);
+// let ans = efficientMyApproach(arr.length, arr);
 console.log(ans);

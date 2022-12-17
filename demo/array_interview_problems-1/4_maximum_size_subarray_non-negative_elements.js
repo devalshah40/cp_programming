@@ -104,26 +104,27 @@ function localApproach(arr) {
 function scalerApproach(A) {
   let n = A.length;
   let i = 0;
-  let max_count = 0,
-    st_point = 0;
+  let maxCount = 0,
+    startingPoint = 0;
   while (i < n) {
     if (A[i] >= 0) {
-      let temp = 0;
-      let tempst = i;
+      let currentCount = 0;
+      let currentStartingPoint = i;
       while (A[i] >= 0 && i < n) {
         i++;
-        temp++;
+        currentCount++;
       }
-      if (temp > max_count) {
-        max_count = temp;
-        st_point = tempst;
+      if (currentCount > maxCount) {
+        maxCount = currentCount;
+        startingPoint = currentStartingPoint;
       }
     } else {
       i++;
     }
   }
+
   let ans = [];
-  for (let j = st_point; j < st_point + max_count; j++) {
+  for (let j = startingPoint; j < startingPoint + maxCount; j++) {
     ans.push(A[j]);
   }
   return ans;
