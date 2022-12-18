@@ -125,13 +125,13 @@ For 6th index with 1,  previous subarray OR including himself  [1 1 1 1 0 0 1] 7
 */
 //backward only approach
 function efficientScalerApproach(arrLength, arr) {
-  let prevSubArrayCountWithOneOR = 0;
+  let last = 0;
   let ans = 0;
   for (let i = 0; i < arrLength; i++) {
     if (arr[i] == 1) {
-      prevSubArrayCountWithOneOR = i + 1;
+      last = i + 1;
     }
-    ans += prevSubArrayCountWithOneOR;
+    ans += last;
   }
   return ans;
 }

@@ -43,6 +43,9 @@ They are an anagram.
 function checkAnagram(A, B) {
   let frequencyArr = new Array(26).fill(0);
 
+  if (A.length !== B.length) {
+    return 0;
+  }
   for (const char of A) {
     let index = char.charCodeAt() - 'a'.charCodeAt();
     frequencyArr[index]++;

@@ -48,63 +48,67 @@ let str = 'abcaacbbbaaaababbabbaabbcccaacabbacacbc';
 //  "abcaacbbbaaaababbabbaabbcccaacabbacacbc"
 // ans = acabbaca
 // current return value :- abbabba
+function myApproach(str) {
+  let charArr = str.split('');
 
-let charArr = str.split('');
+  let n = charArr.length;
+  if (n === 0) {
+    return '';
+  } else if (n === 1) {
+    return charArr[0];
+  }
 
-let n = charArr.length;
-if (n === 0) {
-  return '';
-} else if (n === 1) {
-  return charArr[0];
-}
+  let i = 0;
+  let totalLength = 0;
+  let finalAns = '';
 
-let i = 0;
-let totalLength = 0;
-let finalAns = '';
+  while (i < n) {
+    let currentLength = 0;
+    let currentAns = charArr[i];
 
-while (i < n) {
-  let currentLength = 0;
-  let currentAns = charArr[i];
+    let j = i;
 
-  let j = i;
+    let currentChar = charArr[i];
+    while (j < n) {
+      let nextChar = charArr[j + 1];
 
-  let currentChar = charArr[i];
-  while (j < n) {
-    let nextChar = charArr[j + 1];
-
-    if (nextChar === currentChar) {
-      currentAns += currentChar;
-      j++;
-    } else {
-      break;
+      if (nextChar === currentChar) {
+        currentAns += currentChar;
+        j++;
+      } else {
+        break;
+      }
     }
-  }
 
-  currentLength = j - i + 1;
-  if (currentLength > totalLength) {
-    totalLength = currentLength;
-    finalAns = currentAns;
-  }
-  let startingLength = Math.floor((totalLength - currentLength) / 2) + 1;
-
-  let firstStr = '',
-    secondStr = '';
-  while (i - startingLength >= 0 && j + startingLength < n) {
-    firstStr = str.substr(i - startingLength, startingLength);
-    secondStr = str.substr(j + 1, startingLength);
-
-    reversedSecondStr = secondStr.split('').reverse().join('');
-
-    if (firstStr === reversedSecondStr) {
-      finalAns = firstStr + currentAns + secondStr;
-    } else {
-      break;
+    currentLength = j - i + 1;
+    if (currentLength > totalLength) {
+      totalLength = currentLength;
+      finalAns = currentAns;
     }
-    startingLength++;
+    let startingLength = Math.floor((totalLength - currentLength) / 2) + 1;
+
+    let firstStr = '',
+      secondStr = '';
+    while (i - startingLength >= 0 && j + startingLength < n) {
+      firstStr = str.substr(i - startingLength, startingLength);
+      secondStr = str.substr(j + 1, startingLength);
+
+      reversedSecondStr = secondStr.split('').reverse().join('');
+
+      if (firstStr === reversedSecondStr) {
+        finalAns = firstStr + currentAns + secondStr;
+      } else {
+        break;
+      }
+      startingLength++;
+    }
+    totalLength = finalAns.length;
+    i++;
   }
-  totalLength = finalAns.length;
-  i++;
+  return finalAns;
 }
+let ans = myApproach(str);
+console.log(ans);
 
 // let n = charArr.length;
 // let i = 0;
@@ -130,4 +134,3 @@ while (i < n) {
 //   }
 //   i++;
 // }
-console.log(finalAns);

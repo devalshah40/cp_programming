@@ -60,5 +60,6 @@ Space Complexity : O(1)
 */
 let A = 4;
 let B = 1;
-let ans = (A >> B) & 1;
+// let ans = (A >> B) & 1;
+let ans = A & (1 << B);
 console.log(ans);
