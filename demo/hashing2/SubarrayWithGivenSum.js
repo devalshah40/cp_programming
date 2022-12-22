@@ -57,51 +57,41 @@ Explanation 2:
  No subarray sums up to required number.
  */
 
-// let arr = [1, 2, 3, 4, 5];
-// let requiredSum = 5;
+let arr = [1, 2, 3, 4, 5];
+let requiredSum = 7;
 // let arr = [15, 2, 5, 6, 9];
 // let requiredSum = 7;
 // let arr = [15, 2];
 // let requiredSum = 2;
 
-let arr = [15];
-let requiredSum = 3;
+// let arr = [15];
+// let requiredSum = 3;
 
-function findSubArraWithSum(arr, requiredSum) {
-  let start = 0;
-  let end = 0;
-  let curSum = 0;
-  for (; end < arr.length; end++) {
-    // console.log(start, ' ', end, ' ', curSum);
-    if (arr[end] > requiredSum) {
-      start++;
+function findSubArraWithSumPrefixSumApproach(arr, requiredSum) {
+  let currentSum = 0;
+
+  let set = new Set();
+  for (let i = 0; i < arr.length; i++) {
+    currentSum = i === 0 ? arr[i] : currentSum + arr[i];
+    /* 
+      A = [1, 2, 3, 4, 5]
+      PS = [1, 3, 6, 10, 15]
+      sum = 7;
+      
+      PS[0,i-1] + PS[i,j] = PS[j]
+      PS[0,i-1] + 7 = 10
+      we need pair (A, B) = 10, so we find (10 - B) value in previous index
+      so 10 - 7 =3. we are finding 3 in previous index.
+    */
+    const val = currentSum - requiredSum;
+
+    if (set.has(val)) {
+      return 1;
     } else {
-      curSum += arr[end];
-    }
-    if (curSum > requiredSum) {
-      break;
-    } else if (curSum === requiredSum) {
-      return arr.slice(start, end + 1);
+      s.add(currentSum);
     }
   }
-  // console.log(curSum);
-  while (start < arr.length && end < arr.length) {
-    // console.log(start, ' ', end);
-    if (curSum > requiredSum) {
-      curSum -= arr[start];
-      start++;
-    } else if (curSum < requiredSum) {
-      curSum += arr[end + 1];
-      end++;
-    }
-    if (curSum === requiredSum) {
-      // console.log(start, ' ', end);
-      // console.log(arr.slice(start, end + 1));
-      // break;
-      return arr.slice(start, end + 1);
-    }
-  }
-  return [-1];
+  return -1;
 }
 
 /*

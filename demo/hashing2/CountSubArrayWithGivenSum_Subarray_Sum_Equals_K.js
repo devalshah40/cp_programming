@@ -97,6 +97,7 @@ we move right if our sum is < target.
 we move left when sum > target. using left and right, we get our subarray.
 */
 function findSubArraWithSumEfficient(A, B) {
+  // instead of prefix sum, we can use carry forward currentSum
   let n = A.length;
   let count = 0;
 
@@ -122,7 +123,26 @@ function findSubArraWithSumEfficient(A, B) {
     } else {
       map.set(prefixSum[i], frequencyVal + 1);
     }
-    
+  }
+  return count;
+}
+function findSubArraWithSumCarryForward(A, B) {
+  let n = A.length;
+  let count = 0;
+
+  let currentSum = 0;
+  let map = new Map();
+  for (let i = 0; i < n; i++) {
+    if (currentSum === B) {
+      count++;
+    }
+    let requiredVal = currentSum - B;
+    if (map.has(requiredVal)) {
+      count += map.get(requiredVal);
+    }
+
+    let frequencyVal = map.get(currentSum);
+    map.set(currentSum, frequencyVal ? frequencyVal + 1 : 1);
   }
   return count;
 }

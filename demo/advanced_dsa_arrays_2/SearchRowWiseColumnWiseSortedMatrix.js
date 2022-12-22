@@ -73,6 +73,10 @@ function solve(A, B) {
       row++;
     }
   }
+  console.log(row, '  --', col);
+  while (col >= 0 && A[row][col - 1] === B) {
+    col--;
+  }
   row++;
   col++;
   if (isFound === true) {
@@ -90,7 +94,7 @@ function searchUsingTopRight(A, B) {
   let col = M - 1;
 
   let isFound = false;
-  while (row < N && col >= 0) {
+  while (isFound && col > 0 && A[row][col - 1] === B) {
     if (A[row][col] === B) {
       isFound = true;
       break;
@@ -108,9 +112,19 @@ function searchUsingBottomLeft(A, B) {
   let row;
 }
 
+// let A = [
+//   [1, 2, 3, 4],
+//   [4, 5, 6, 10],
+//   [7, 8, 9, 11],
+// ];
+
+// let B = 4;
+
 let A = [
-  [1, 2, 3, 4],
-  [4, 5, 6, 10],
-  [7, 8, 9, 11],
+  [2, 8, 8, 8],
+  [2, 8, 8, 8],
+  [2, 8, 8, 8],
 ];
-let B = 4;
+let B = 10;
+let ans = solve(A, B);
+console.log(ans);

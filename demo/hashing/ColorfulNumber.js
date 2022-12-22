@@ -72,7 +72,7 @@ function isColorfulNumber(number) {
 
   for (let i = 0; i < n; i++) {
     if (i === 0) {
-      prefixMul[i] = arr[i] / 1;
+      prefixMul[i] = arr[i];
     } else {
       prefixMul[i] = prefixMul[i - 1] * arr[i];
     }

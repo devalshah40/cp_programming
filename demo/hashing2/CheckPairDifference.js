@@ -64,12 +64,11 @@ Explanation 2:
 */
 // let arr = [5, 10, 3, 2, 50, 80];
 // let k = 78;
-let arr = [-76, 2];
-let k = 78;
+// let arr = [-76, 2];
+// let k = 78;
 
-// let arr = [1, 5, 2, 6];
-// let k = 4;
-
+let arr = [1, 5, 2, 6];
+let k = 4;
 /*
 Solution Approach
 Method 1: Brute Force
@@ -105,9 +104,17 @@ function checkPairDifference(arr, k) {
     const val = arr[i];
     let requiredVal;
     let requiredVal1;
-    // if (val > k) {
+
+    /*
+      A - B = k, A = k + B; B = A - k
+      if value = -10 and required sum = 10.
+      case 1) k = 10, B = -10
+        so A = k + B = 10 - 10 = 0
+      case 2) k = 10, A = -10
+        so B = A - k = - 10 - 10 = -20
+    */
+
     requiredVal = val - k;
-    // }
     requiredVal1 = val + k;
 
     if (requiredVal && s.has(requiredVal)) {

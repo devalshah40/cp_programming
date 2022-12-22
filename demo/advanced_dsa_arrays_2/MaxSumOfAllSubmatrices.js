@@ -1,54 +1,51 @@
 /*
 Problem Description
-Given a row-wise and column-wise sorted matrix A of size N * M.
-Return the maximum non-empty submatrix sum of this matrix.
+Given a N * M 2D matrix A. Find the maximum sum sub-matrix from the matrix A. Return the Sum.
 
 
 Problem Constraints
-1 <= N, M <= 1000
--109 <= A[i][j] <= 109
+1 <= N, M <= 300
+-104 <= A[i][j] <= 104
 
 
 Input Format
-The first argument is a 2D integer array A.
+The first argument is a 2D Integer array A.
 
 
 Output Format
-Return a single integer that is the maximum non-empty submatrix sum of this matrix.
+Return the sum of the maximum sum sub-matrix from matrix A.
 
 
 Example Input
 Input 1:-
-    -5 -4 -3
-A = -1  2  3
-     2  2  4
+    -6 -6
+   -29 -8
+A =  3 -8
+   -15  2
+    25 25
+    20 -5
 Input 2:-
-    1 2 3
-A = 4 5 6
-    7 8 9
+A = -17 -2
+     20 10
 
 
 Example Output
 Output 1:-
-12
+65
 Output 2:-
-45
+30
 
 
 Example Explanation
-Expanation 1:-
-The submatrix with max sum is 
--1 2 3
- 2 2 4
- Sum is 12.
+Explanation 1:-
+The submatrix 
+25 25
+20 -5
+has the highest submatrix sum 65.
 Explanation 2:-
-The largest submatrix with max sum is 
-1 2 3
-4 5 6
-7 8 9
-The sum is 45.
-
- 
+The submatrix 
+20 10
+has the highest sub matrix sum 30.
 */
 function maxSumOfAllSubmatrices(A) {
   let N = A.length;
