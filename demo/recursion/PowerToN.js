@@ -1,9 +1,9 @@
 function simlePowerToN(n, power) {
-  if (power === 0) {
-    return 1;
+  if (power === 1) {
+    return n;
   }
-  let temp = simlePowerToN(n, power - 1);
-  return temp * n;
+
+  return n * simlePowerToN(n, power - 1);
 }
 
 function optimiZedPowerToN(n, power) {
@@ -35,7 +35,33 @@ function optimiZedPowerToNMod(n, power, mod) {
     return halfAnswer;
   }
 }
+function pow(n, power, mod) {
+  n = BigInt(n);
+  mod = BigInt(mod);
 
+  function optimiZedPowerToNMod(n, power, mod) {
+    if (n === 0n) {
+      return 0n;
+    }
+    if (power === 0) {
+      return 1n;
+    }
+    let temp = optimiZedPowerToNMod(n, parseInt(power / 2), mod);
+    let halfAnswer = ((temp % mod) * (temp % mod)) % mod;
+    if (power & 1) {
+      return ((halfAnswer % mod) * (n % mod)) % mod;
+    } else {
+      return halfAnswer;
+    }
+  }
+
+  let ans = optimiZedPowerToNMod(n, power, mod);
+
+  if (ans < BigInt(0)) {
+    ans = (ans + mod) % mod;
+  }
+  return Number(ans);
+}
 // let n = 0;
 // let power = 0;
 // let mod = 100;
