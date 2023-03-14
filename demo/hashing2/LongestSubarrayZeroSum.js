@@ -50,6 +50,25 @@ Explanation 2:
 let arr = [-16, 16, 3];
 
 /*
+Hint 1
+Lets try to reduce the problem to a much simpler problem. 
+Lets say we have another array `sum` where 
+
+
+  sum[i] = Sum of all elements from A[0] to A[i]
+
+
+Note that in this array, sum of elements from A[i] to A[j] = Sum[j] - Sum[i-1]
+
+
+We need to find j and i such that sum of elements from A[i] to A[j] = 0
+ Or Sum[j] - Sum[i-1] = 0
+ Or Sum[j] = Sum[i-1]
+
+
+Now, the problem reduces to finding 2 indices i and j such that `sum[i] = sum[j]` 
+How can you solve the above problem ? 
+
 Approach:
 
 There are two steps:

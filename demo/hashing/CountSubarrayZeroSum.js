@@ -47,28 +47,55 @@ Explanation 2:
 */
 let arr = [0, 0, 0];
 
-let n = arr.length;
+function solve(arr) {
+  let n = arr.length;
 
-let prefixSum = new Array(n);
-let set = new Set();
+  let prefixSum = new Array(n);
+  let set = new Set();
 
-let count = 0;
-for (let i = 0; i < n; i++) {
-  if (i === 0) {
-    prefixSum[i] = arr[i];
-  } else { 
-    prefixSum[i] = prefixSum[i - 1] + arr[i];
+  let count = 0;
+  for (let i = 0; i < n; i++) {
+    if (i === 0) {
+      prefixSum[i] = arr[i];
+    } else {
+      prefixSum[i] = prefixSum[i - 1] + arr[i];
+    }
+    let sum = prefixSum[i];
+
+    if (sum === 0) {
+      count = (count % 1_000_000_007) + 1;
+    }
+
+    if (set.has(sum)) {
+      count = (count % 1_000_000_007) + 1;
+    } else {
+      set.add(sum);
+    }
   }
-  let sum = prefixSum[i];
-
-  if (sum === 0) {
-    count = (count % 1_000_000_007) + 1;
-  }
-
-  if (set.has(sum)) {
-    count = (count % 1_000_000_007) + 1;
-  } else {
-    set.add(sum);
-  }
+  console.log(count);
+  return count;
 }
-console.log(count);
+
+function solveCarryForward(arr) {
+  let n = arr.length;
+
+  let curSum = 0;
+  let set = new Set();
+
+  let count = 0;
+  for (let i = 0; i < n; i++) {
+    curSum += arr[i];
+
+    if (curSum === 0) {
+      count = (count % 1_000_000_007) + 1;
+    }
+
+    if (set.has(curSum)) {
+      count = (count % 1_000_000_007) + 1;
+    } else {
+      set.add(curSum);
+    }
+  }
+  console.log(count);
+  return count;
+}

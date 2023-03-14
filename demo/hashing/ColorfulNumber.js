@@ -99,7 +99,47 @@ function isColorfulNumber(number) {
   }
   return 1;
 }
+/*
+It is one of the easiest problems in this section.
+You just need to simulate what has been stated in the problem.
+
+Iterate over all the consecutive sequence of digits of the number and store the product in a set using hashing.
+If the product is already present in the set at any point then the number is not Colorful.
+Otherwise, it is a Colorful number.
+
+Example:
+
+A = 123
+1 2 3 12 23 123
+1 -> 1
+2 -> 2
+3 -> 3
+12 -> 2  we have already encountered 2 before. Return 0
+
+Time Complexity : O((log10A)2)
+Space Complexity : O((log10A)2)
+*/
+
+function isColorfulNumberEfficient(number) {
+  let arr = number.toString().split('');
+  let n = arr.length;
+
+  let set = new Set();
+  for (let i = 0; i < n; i++) {
+    let product = 1;
+    for (let j = i; j < n; j++) {
+      product *= arr[j];
+      if (set.has(product)) {
+        return 0;
+      } else {
+        set.add(product);
+      }
+    }
+  }
+  return 1;
+}
 // let number = 23;
 let number = 236;
-let ans = isColorfulNumber(number);
+// let ans = isColorfulNumber(number);
+let ans = isColorfulNumberEfficient(number);
 console.log(ans);

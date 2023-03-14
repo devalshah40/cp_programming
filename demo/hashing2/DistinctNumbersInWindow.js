@@ -73,7 +73,7 @@ for (let i = 0; i < windowSize; i++) {
 let ansArr = [];
 ansArr.push(map.size);
 
-for (let i = windowSize; i < n; i++) {
+for (let i = windowSize; i < n - windowSize; i++) {
   const currentVal = arr[i];
   const removalVal = arr[i - windowSize];
 
