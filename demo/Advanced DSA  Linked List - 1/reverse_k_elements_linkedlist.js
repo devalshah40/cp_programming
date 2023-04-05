@@ -146,7 +146,6 @@ printAll(head);
 head = reverseKElementsList(head, 2);
 printAll(head);
 
-
 /*
 Recursion approach
 

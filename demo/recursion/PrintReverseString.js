@@ -52,5 +52,16 @@ function printReverse(index) {
   ans += str[index];
   printReverse(index - 1);
 }
-printReverse(str.length - 1);
-console.log(ans);
+
+function reverse(index) {
+  if (index === -1) {
+    return '';
+  }
+  let value = reverse(index - 1);
+  // ans += str[index];
+  return str[index] + value;
+}
+
+// printReverse(str.length - 1);
+let answer = reverse(str.length - 1);
+console.log(answer);
