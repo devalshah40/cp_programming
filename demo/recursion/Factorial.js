@@ -6,7 +6,16 @@ function getFactorial(n) {
   return n * value;
 }
 
+function getFactorial2(k, n) {
+  if (n === k) {
+    return n;
+  }
+
+  return k * getFactorial2(k + 1, n);
+}
+let ans;
 let n = 4;
-let ans = getFactorial(n);
+// ans = getFactorial(n);
+ans = getFactorial2(1, n);
 
 console.log(ans);
