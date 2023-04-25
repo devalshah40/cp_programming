@@ -77,62 +77,25 @@ class TreeNode {
   }
 }
 // leetcode.com/problems/binary-tree-postorder-traversal/solutions/45648/three-ways-of-iterative-postorder-traversing-easy-explanation/
-function postOrderTraversalScaler(root) {
+function preOrderTraversalScaler(root) {
   let ans = [];
   let stack = new Stack();
   let currNode = root;
-  let pre = null;
 
   while (currNode != null || !stack.isEmpty()) {
     if (currNode) {
+      ans.push(currNode.data);
       stack.push(currNode);
       currNode = currNode.left;
     } else {
       currNode = stack.peek();
-      if (currNode.right) {
-        currNode = currNode.right;
-      } else if (currNode.right == null || currNode.right == pre) {
-        ans.push(currNode.data);
-        stack.pop();
-        pre = currNode;
-        currNode = null;
-      }
+      stack.pop();
+      currNode = currNode.right;
     }
   }
   return ans;
 }
 
-function postOrderTraversal(A) {
-  let ans = [];
-  // Two stacks as used in explanation
-  // Create two stacks
-  let s1 = [];
-  let s2 = [];
-
-  if (root == null) return;
-
-  // Push root to first stack
-  s1.push(root);
-
-  // Run while first stack is not empty
-  while (s1.length > 0) {
-    // Pop an item from s1 and Push it to s2
-    let temp = s1.pop();
-    s2.push(temp);
-
-    // Push left and right children of
-    // removed item to s1
-    if (temp.left != null) s1.push(temp.left);
-    if (temp.right != null) s1.push(temp.right);
-  }
-
-  // Print all elements of second stack
-  while (s2.length > 0) {
-    let temp = s2.pop();
-    ans.push(temp.data);
-  }
-  return ans;
-}
 const root = new TreeNode(1);
 const second = new TreeNode(2);
 root.left = second;
@@ -144,5 +107,5 @@ const fourth = new TreeNode(4);
 second.right = fourth;
 const sixth = new TreeNode(6);
 fifth.right = sixth;
-let ans = postOrderTraversal(root);
+let ans = preOrderTraversalScaler(root);
 console.log(ans);
