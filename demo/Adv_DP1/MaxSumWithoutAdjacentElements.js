@@ -61,6 +61,7 @@ Explanation 2:
 
  We will choose 3 and 5.
 */
+// 2D arr solution
 function adjacent(A) {
   let n = A[0].length;
   let max = -1;
@@ -79,9 +80,43 @@ function adjacent(A) {
   for (let i = 2; i < n; i++) {
     A[0][i] = Math.max(A[0][i - 2], A[1][i - 2]) + A[0][i];
     A[1][i] = Math.max(A[0][i - 2], A[1][i - 2]) + A[1][i];
-    max = Math.max(max, A[0][i], A[1][i]);
+
+    max = Math.max(max, A[0][i - 1], A[1][i - 1], A[0][i], A[1][i]);
+    A[0][i] = A[1][i] = max;
   }
   return max;
+}
+
+// 1D arr solution
+function adjacent1D(A) {
+  let n = A[0].length;
+
+  let dp = Array(n);
+  if (n >= 1) dp[0] = Math.max(A[0][0], A[1][0]);
+  if (n >= 2) dp[1] = Math.max(A[0][1], A[1][1], dp[0]);
+
+  for (let i = 2; i < n; i++) {
+    dp[i] = Math.max(dp[i - 2] + A[0][i], dp[i - 2] + A[1][i], dp[i - 1]);
+  }
+  return dp[n - 1];
+}
+
+// SC:- O(1) using variables
+function adjacentVariable(A) {
+  let n = A[0].length;
+
+  let a, b, c;
+  if (n >= 1) a = Math.max(A[0][0], A[1][0]);
+  if (n === 1) return a;
+  if (n >= 2) b = Math.max(A[0][1], A[1][1], a);
+  if (n === 2) return b;
+
+  for (let i = 2; i < n; i++) {
+    c = Math.max(a + A[0][i], a + A[1][i], b);
+    a = b;
+    b = c;
+  }
+  return c;
 }
 
 let A;
@@ -106,5 +141,9 @@ A = [
   [9, 16, 5, 4, 20, 3, 3],
 ];
 // A = [[28], [10]];
-let ans = adjacent(A);
+let ans;
+// ans = adjacent(A);
+// ans = adjacent1D(A);
+ans = adjacentVariable(A);
+
 console.log(ans);
