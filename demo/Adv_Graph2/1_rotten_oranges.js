@@ -43,8 +43,8 @@ If this is impossible, return -1 instead.
 Example Input
 Input 1:
 
-A = [   [2, 1, 1]
-        [1, 1, 0]
+A = [   [2, 1, 1],
+        [1, 1, 0],
         [0, 1, 1]   ]
 Input 2:
 
@@ -119,7 +119,7 @@ class Queue {
 function solve(A) {
   const N = A.length;
   const M = A[0].length;
-  const newTimeArr = new Array(N).map((_) => new Array(M).fill(-1));
+  const newTimeArr = Array.from(Array(N), () => new Array(M).fill(-1));
 
   const q = new Queue();
   for (let row = 0; row < N; row++) {
@@ -141,26 +141,26 @@ function solve(A) {
     dfs(row, col, newTimeArr[row][col]);
   }
 
-  // function dfs(i, j, newTime) {
-  //   if (
-  //     i === -1 ||
-  //     j === -1 ||
-  //     i === N ||
-  //     j === M ||
-  //     A[i][j] === 0 ||
-  //     A[i][j] === 2
-  //   ) {
-  //     return;
-  //   }
-  //   newTimeArr[i][j] = newTime;
-  //   A[i][j] = 2;
-  //   const updatedTime = newTime + 1;
+  function dfs(i, j, newTime) {
+    if (
+      i === -1 ||
+      j === -1 ||
+      i === N ||
+      j === M ||
+      A[i][j] === 0 ||
+      A[i][j] === 2
+    ) {
+      return;
+    }
+    newTimeArr[i][j] = newTime;
+    A[i][j] = 2;
+    const updatedTime = newTime + 1;
 
-  //   dfs(i + 1, j, updatedTime);
-  //   dfs(i - 1, j, updatedTime);
-  //   dfs(i, j + 1, updatedTime);
-  //   dfs(i, j - 1, updatedTime);
-  // }
+    dfs(i + 1, j, updatedTime);
+    dfs(i - 1, j, updatedTime);
+    dfs(i, j + 1, updatedTime);
+    dfs(i, j - 1, updatedTime);
+  }
   for (let row = 0; row < N; row++) {
     for (let col = 0; col < M; col++) {
       const element = A[row][col];
@@ -178,3 +178,12 @@ function solve(A) {
   }
   return max;
 }
+
+let A;
+A = [
+  [2, 1, 1],
+  [1, 1, 0],
+  [0, 1, 1],
+];
+let ans = solve(A);
+console.log(ans);

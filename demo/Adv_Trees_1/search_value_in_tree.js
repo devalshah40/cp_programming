@@ -89,7 +89,7 @@ for (let i = 0; i < inOrderArr.length; i++) {
 }
 let root = constructTreeInPreOrderTraversal(0, n - 1, 0, n - 1);
 console.log(root);
-let ans = search(root, 7);
+let ans = search(root, 1);
 console.log(ans);
 
 function constructTreeInPreOrderTraversal(sPre, ePre, sIn, eIn) {

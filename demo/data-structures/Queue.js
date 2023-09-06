@@ -1,59 +1,87 @@
+// class Queue {
+//   constructor(length = 0) {
+//     this.data = [];
+//     this.size = length;
+//     this.currentSize = 0;
+//     this._front = -1;
+//     this._rear = -1;
+//   }
+//   enqueue(element) {
+//     if (this.size !== this.currentSize) {
+//       if (this._front === -1) {
+//         this._front = this._front + 1;
+//       }
+//       this._rear = (this._rear + 1) % this.size;
+//       this.data[this._rear] = element;
+//       this.currentSize++;
+//     }
+//     return -1;
+//   }
+//   front() {
+//     return this.data[this._front] ?? -1;
+//   }
+//   dequeue() {
+//     if (this.isEmpty() === false) {
+//       const data = this.data[this._front];
+//       this._front = (this._front + 1) % this.size;
+//       this.currentSize--;
+//       return data;
+//     }
+//     return -1;
+//   }
+//   isEmpty() {
+//     return this.currentSize === 0;
+//   }
+//   length() {
+//     return this.currentSize;
+//   }
+//   // print() {
+//   //   let front = this.front - 1; // because front points to index where new    element to be inserted
+//   //   while (front >= 0) {
+//   //     // print upto 0th index
+//   //     console.log(this.data[front]);
+//   //     front--;
+//   //   }
+//   // }
+//   // reverse() {
+//   //   return this._reverse(this.front - 1);
+//   // }
+//   // _reverse(index) {
+//   //   if (index === -1) {
+//   //     return '';
+//   //   }
+//   //   return this._reverse(index - 1) + this.data[index];
+//   // }
+// }
 class Queue {
-  constructor(length = 0) {
-    this.data = [];
-    this.size = length;
-    this.currentSize = 0;
-    this._front = -1;
-    this._rear = -1;
+  constructor() {
+    this.items = {};
+    this.frontIndex = 0;
+    this.backIndex = 0;
   }
-  enqueue(element) {
-    if (this.size !== this.currentSize) {
-      if (this._front === -1) {
-        this._front = this._front + 1;
-      }
-      this._rear = (this._rear + 1) % this.size;
-      this.data[this._rear] = element;
-      this.currentSize++;
-    }
-    return -1;
-  }
-  front() {
-    return this.data[this._front] ?? -1;
+  enqueue(item) {
+    this.items[this.backIndex] = item;
+    this.backIndex++;
   }
   dequeue() {
-    if (this.isEmpty() === false) {
-      const data = this.data[this._front];
-      this._front = (this._front + 1) % this.size;
-      this.currentSize--;
-      return data;
-    }
-    return -1;
+    const item = this.items[this.frontIndex];
+    delete this.items[this.frontIndex];
+    this.frontIndex++;
+    return item;
   }
   isEmpty() {
-    return this.currentSize === 0;
+    return this.frontIndex === this.backIndex;
   }
-  length() {
-    return this.currentSize;
+  size() {
+    return this.backIndex - this.frontIndex;
   }
-  // print() {
-  //   let front = this.front - 1; // because front points to index where new    element to be inserted
-  //   while (front >= 0) {
-  //     // print upto 0th index
-  //     console.log(this.data[front]);
-  //     front--;
-  //   }
-  // }
-  // reverse() {
-  //   return this._reverse(this.front - 1);
-  // }
-  // _reverse(index) {
-  //   if (index === -1) {
-  //     return '';
-  //   }
-  //   return this._reverse(index - 1) + this.data[index];
-  // }
+  peek() {
+    return this.items[this.frontIndex];
+  }
+  get printQueue() {
+    return this.items;
+  }
 }
-
 console.log('Creating Queue');
 let queue = new Queue(5);
 

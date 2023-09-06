@@ -71,40 +71,33 @@ class TreeNode {
     this.right = null;
   }
 }
-const preOrderArr = [1, 2, 4, 8, 5, 3, 6, 7],
+const postOrderArr = [8, 4, 5, 2, 6, 7, 3, 1],
   inOrderArr = [4, 8, 2, 5, 1, 6, 3, 7];
-const n = preOrderArr.length;
+const n = postOrderArr.length;
 const inOrderMap = new Map();
 for (let i = 0; i < inOrderArr.length; i++) {
   inOrderMap.set(inOrderArr[i], i);
 }
-// const preOrderMap = new Map(),
-// for (let i = 0; i < preOrderArr.length; i++) {
-//   preOrderMap.set(preOrderArr[i], i);
-// }
 
-const root = constructTreeInPreOrderTraversal(0, n - 1, 0, n - 1);
+const root = constructTreeInPostOrderTraversal(0, n - 1, 0, n - 1);
 console.log(root);
-function constructTreeInPreOrderTraversal(sPre, ePre, sIn, eIn) {
-  const root = new TreeNode(preOrderArr[sPre]);
+function constructTreeInPostOrderTraversal(sPost, ePost, sIn, eIn) {
+  const root = new TreeNode(postOrderArr[ePost]);
   if (sIn > eIn) {
     return null;
   }
-  const idX = inOrderMap.get(preOrderArr[sPre]);
-  // ePre - sPre -1 + 1 = idX - 1 - sIn + 1;
-  // ePre - sPre = idX - sIn;
-  // ePre = idX - sIn + sPre;
+  const idX = inOrderMap.get(postOrderArr[ePost]);
+
   const numOfElements = idX - sIn;
-  ePre = sPre + numOfElements;
-  root.left = constructTreeInPreOrderTraversal(
-    sPre + 1,
-    sPre + numOfElements,
+  root.left = constructTreeInPostOrderTraversal(
+    sPost,
+    sPost - 1 + numOfElements,
     sIn,
     idX - 1
   );
-  root.right = constructTreeInPreOrderTraversal(
-    sPre + numOfElements + 1,
-    ePre,
+  root.right = constructTreeInPostOrderTraversal(
+    sPost + numOfElements,
+    ePost - 1,
     idX + 1,
     eIn
   );

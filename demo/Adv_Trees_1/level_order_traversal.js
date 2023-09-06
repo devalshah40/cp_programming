@@ -1,14 +1,10 @@
-/*
-Q3. Postorder Traversal
+/*Q3. Level Order
 Unsolved
-character backgroundcharacter
-Stuck somewhere?
-Ask for help from a TA and get it resolved.
-Get help from TA.
+feature icon
+Using hints is now penalty free
+Use Hint
 Problem Description
-Given a binary tree, return the Postorder traversal of its nodes values.
-
-NOTE: Using recursion is not allowed.
+Given a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
 
 
 
@@ -23,18 +19,18 @@ First and only argument is root node of the binary tree, A.
 
 
 Output Format
-Return an integer array denoting the Postorder traversal of the given binary tree.
+Return a 2D integer array denoting the level order traversal of the given binary tree.
 
 
 
 Example Input
 Input 1:
 
-   1
-    \
-     2
-    /
-   3
+    3
+   / \
+  9  20
+    /  \
+   15   7
 Input 2:
 
    1
@@ -47,48 +43,56 @@ Input 2:
 Example Output
 Output 1:
 
- [3, 2, 1]
+ [
+   [3],
+   [9, 20],
+   [15, 7]
+ ]
 Output 2:
 
- [6, 3, 2, 1]
+ [ 
+   [1]
+   [6, 2]
+   [3]
+ ]
 
 
 Example Explanation
 Explanation 1:
 
- The Postorder Traversal of the given tree is [3, 2, 1].
-Explanation 2:
-
- The Postorder Traversal of the given tree is [6, 3, 2, 1].
+ Return the 2D array. Each row denotes the traversal of each level.
  */
 
-// Definition for a  binary tree node
-//    function TreeNode(data){
-//      this.data = data
-//      this.left = null
-//      this.right = null
-//    }
-const Stack = require('../data-structures/Stack');
-
-// leetcode.com/problems/binary-tree-postorder-traversal/solutions/45648/three-ways-of-iterative-postorder-traversing-easy-explanation/
-function preOrderTraversalScaler(root) {
-  let ans = [];
-  let stack = new Stack();
-  let currNode = root;
-
-  while (currNode != null || !stack.isEmpty()) {
-    if (currNode) {
-      ans.push(currNode.data);
-      stack.push(currNode);
-      currNode = currNode.left;
-    } else {
-      currNode = stack.peek();
-      stack.pop();
-      currNode = currNode.right;
-    }
+class Queue {
+  constructor() {
+    this.items = {};
+    this.frontIndex = 0;
+    this.backIndex = 0;
   }
-  return ans;
+  enqueue(item) {
+    this.items[this.backIndex] = item;
+    this.backIndex++;
+  }
+  dequeue() {
+    const item = this.items[this.frontIndex];
+    delete this.items[this.frontIndex];
+    this.frontIndex++;
+    return item;
+  }
+  isEmpty() {
+    return this.frontIndex === this.backIndex;
+  }
+  size() {
+    return this.backIndex - this.frontIndex;
+  }
+  peek() {
+    return this.items[this.frontIndex];
+  }
+  get printQueue() {
+    return this.items;
+  }
 }
+
 class TreeNode {
   constructor(data) {
     this.data = data;
@@ -114,7 +118,7 @@ for (let i = 0; i < inOrderArr.length; i++) {
 }
 let root = constructTreeInPreOrderTraversal(0, n - 1, 0, n - 1);
 console.log(root);
-let ans = preOrderTraversalScaler(root);
+let ans = levelOrderTraversal(root);
 console.log(ans);
 
 function constructTreeInPreOrderTraversal(sPre, ePre, sIn, eIn) {
@@ -141,4 +145,32 @@ function constructTreeInPreOrderTraversal(sPre, ePre, sIn, eIn) {
     eIn
   );
   return root;
+}
+
+function levelOrderTraversal(root) {
+  if (root === null) {
+    return [];
+  }
+  const q = new Queue();
+  q.enqueue(root);
+  const ans = [];
+  while (!q.isEmpty()) {
+    const level = [];
+    const size = q.size();
+
+    for (let i = 0; i < size; i++) {
+      const node = q.dequeue();
+      level.push(node.data);
+
+      if (node.left) {
+        q.enqueue(node.left);
+      }
+      if (node.right) {
+        q.enqueue(node.right);
+      }
+    }
+    ans.push(level);
+  }
+  console.log(ans);
+  return ans;
 }
