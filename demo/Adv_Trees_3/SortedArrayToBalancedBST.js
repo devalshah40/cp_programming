@@ -1,13 +1,11 @@
 /*
 Q3. Sorted Array To Balanced BST
-Attempted
-feature icon
-Using hints is now penalty free
-Use Hint
+
 Problem Description
 Given an array where elements are sorted in ascending order, convert it to a height Balanced Binary Search Tree (BBST).
 
-Balanced tree : a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.
+Balanced tree : a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node 
+never differ by more than 1.
 
 
 
@@ -71,7 +69,26 @@ let preOrderArr, inOrderArr;
 // inOrderArr = [9, 6, 8, 3, 4];
 preOrderArr = [8, 3, 1, 6, 4, 7, 10, 20, 13];
 inOrderArr = [1, 3, 4, 6, 7, 8, 10, 13, 20];
+/*
+      8
+     / \
+    3   10
+   / \    \ 
+  1   6    20
+     / \   /
+    4   7  13
+    
 
+      8
+     / \
+    3   10
+   / \    \ 
+  1   6    20
+           /
+          13  
+
+1 3 6 8 10 20 13
+          */
 const n = preOrderArr.length;
 const preOrderMap = new Map(),
   inOrderMap = new Map();
@@ -134,8 +151,37 @@ function sortedArrayToBST(nums) {
     return root;
   }
 }
-let numns;
-numns = [1, 2, 3, 5, 10];
+let nums;
+nums = [1, 2, 3, 5, 10];
 
 let ans = sortedArrayToBST(nums);
 console.log(ans);
+
+/*
+Sure! Here are a few edge cases that you should consider while solving this problem:
+
+1. Empty array: What should be the output if the given array is empty?
+2. Single element array: What should be the output if the given array has only one element?
+3. Array with duplicate elements: How will you handle an array that contains duplicate elements?
+4. Array with negative elements: Can the array contain negative elements? If yes, how will you handle them?
+5. Large input size: How efficiently can you handle a large input size, such as an array with 100,000 elements?
+6, Randomly sorted array: Can you handle an array that is sorted in a random order, rather than strictly ascending?
+
+Considering these edge cases will help you ensure that your solution is robust and handles all possible scenarios.
+
+
+Hint 1
+What will happen when you choose the middle element of the array as the root?
+
+After that, can you simulate the same thing for the left and right parts of the array?
+
+Solution Approach
+For a BST, all values lower than the root go in the left part of the root, and all values higher go in the right part of the root.
+To balance the tree, we will need to make sure we distribute the elements almost equally in the left and right parts.
+So we choose the mid part of the array as the root and divide the elements around it.
+
+Things to take care of :
+1) Are you passing a copy of the array around, or are you only passing around a reference?
+2) Are you dividing the array before passing it onto the next function call or are you just specifying the start and end index?
+
+*/

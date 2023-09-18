@@ -1,10 +1,11 @@
-/*Q3. Level Order
+/*
+Q2. ZigZag Level Order Traversal BT
 Unsolved
 feature icon
 Using hints is now penalty free
 Use Hint
 Problem Description
-Given a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
+Given a binary tree, return the zigzag level order traversal of its nodes values. (ie, from left to right, then right to left for the next level and alternate between).
 
 
 
@@ -19,7 +20,7 @@ First and only argument is root node of the binary tree, A.
 
 
 Output Format
-Return a 2D integer array denoting the level order traversal of the given binary tree.
+Return a 2D integer array denoting the zigzag level order traversal of the given binary tree.
 
 
 
@@ -45,14 +46,14 @@ Output 1:
 
  [
    [3],
-   [9, 20],
+   [20, 9],
    [15, 7]
  ]
 Output 2:
 
  [ 
    [1]
-   [6, 2]
+   [2, 6]
    [3]
  ]
 
@@ -60,7 +61,8 @@ Output 2:
 Example Explanation
 Explanation 1:
 
- Return the 2D array. Each row denotes the traversal of each level.
+ Return the 2D array. Each row denotes the zigzag traversal of each level.
+
  */
 
 class Queue {
@@ -159,26 +161,84 @@ function levelOrderTraversal(root) {
   if (root === null) {
     return [];
   }
-  const q = new Queue();
-  q.enqueue(root);
+  const q = [];
+  q.push(root);
   const ans = [];
-  while (!q.isEmpty()) {
+  let isZigzag = false;
+  while (q.length > 0) {
     const level = [];
-    const size = q.size();
+    const size = q.length;
 
     for (let i = 0; i < size; i++) {
-      const node = q.dequeue();
-      level.push(node.data);
-
+      const node = q.shift();
+      if (isZigzag) {
+        level.unshift(node.data);
+      } else {
+        level.push(node.data);
+      }
       if (node.left) {
-        q.enqueue(node.left);
+        q.push(node.left);
       }
       if (node.right) {
-        q.enqueue(node.right);
+        q.push(node.right);
       }
     }
     ans.push(level);
+    isZigzag = !isZigzag;
   }
   console.log(ans);
   return ans;
 }
+
+/*
+Hint 1
+There are 2 approaches possible here.
+
+1) Can you modify the level order approach to take care of this problem ? Reversing the entries in alternate row ?
+2) If you don’t prefer reversing after the initial pass, can you instead use 2 stacks instead of queue to solve this problem ?
+
+
+Solution Approach
+We will be using 2 stacks to solve this problem. One for the current layer and other one for the next layer. Also keep a flag which indicates the direction of traversal on any level.
+
+You need to pop out the elements from current layer stack and depending upon the value of flag push the childs of current element in next layer stack. You should maintain the output sequence in the process as well. Remember to swap the stacks before next iteration.
+
+When should you terminate this algorithm?
+
+
+// Definition for a  binary tree node
+//    function TreeNode(data) {
+//      this.data = data
+//      this.left = null
+//      this.right = null
+//    }
+
+module.exports = { 
+ //param A : root node of tree
+ //return a array of array of integers
+	zigzagLevelOrder : function(A){
+    	    var curr = [A];
+    	    var rtl = false;
+    	    var ans = [];
+    	    while(curr.length > 0) {
+    	        let new_stack = [];
+                let temp = [];
+    	        for(let i = curr.length-1; i >= 0; i--){
+                    if(!rtl){
+        	            if(curr[i].left) new_stack.push(curr[i].left);
+        	            if(curr[i].right) new_stack.push(curr[i].right);
+                    }
+                    else {
+        	            if(curr[i].right) new_stack.push(curr[i].right);
+        	            if(curr[i].left) new_stack.push(curr[i].left);
+                    }
+    	            temp.push(curr[i].data);
+                }
+            	rtl = !rtl;
+        	ans.push(temp);
+        	curr = new_stack;
+    	    }
+            return ans;
+	}
+};
+*/

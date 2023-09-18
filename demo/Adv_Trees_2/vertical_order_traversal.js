@@ -168,7 +168,6 @@ function verticalOrderTraversal(root) {
   let minDist = Number.POSITIVE_INFINITY,
     maxDist = Number.NEGATIVE_INFINITY;
   while (!q.isEmpty()) {
-    const ans = [];
     const size = q.size();
 
     for (let i = 0; i < size; i++) {
