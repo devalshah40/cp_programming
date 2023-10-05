@@ -127,8 +127,9 @@ for (let i = 0; i < inOrderArr.length; i++) {
 }
 let root = constructTreeInPreOrderTraversal(0, n - 1, 0, n - 1);
 console.log(root);
-let ans = levelOrderTraversal(root);
-console.log(ans);
+let ans;
+// ans = levelOrderTraversal(root);
+// console.log(ans);
 
 function constructTreeInPreOrderTraversal(sPre, ePre, sIn, eIn) {
   const root = new TreeNode(preOrderArr[sPre]);
@@ -189,3 +190,72 @@ function levelOrderTraversal(root) {
   console.log(ans);
   return ans;
 }
+
+function levelOrderTraversalScaler(root) {
+  if (root === null) {
+    return [];
+  }
+  const queue = [];
+  queue.push(root);
+
+  const ans = [];
+
+  while (queue.length > 0) {
+    const node = queue.shift();
+    if (node === null) {
+      ans.push(-1);
+    } else {
+      ans.push(node.data);
+      queue.push(node.left, node.right);
+    }
+  }
+  return ans;
+}
+ans = levelOrderTraversalScaler(root);
+console.log(ans);
+/*
+Hint 1
+Think of using queue data structure to do a Level Order Traversal of the Binary Tree.
+
+Solution Approach
+We can do this simply by using a queue data structure.
+
+Firstly, we will push the root node in the queue.
+Now, run a loop until the queue is empty.
+Pop the Node, store the value of the node if it not NULL else store -1 in the output array.
+
+Then push the left child and right child of the node respectively in the queue.
+
+Return the output array.
+
+// Definition for a  binary tree node
+//    function TreeNode(data){
+//      this.data = data
+//      this.left = null
+//      this.right = null
+//    }
+
+module.exports = { 
+ //param A : root node of tree
+ //return a array of integers
+	solve : function(root){
+            if (!root) {
+                return [];
+            }
+            let queue = [root] , arr = [];
+            while (queue.length > 0) {
+                let node = queue.pop();
+                if (node == null) {
+                    arr.push(-1);
+                    continue;
+                }
+                else{
+                    arr.push(node.data);
+                }
+                queue.unshift(node.right , node.left);
+            }
+            return arr;
+	}
+};
+
+*/

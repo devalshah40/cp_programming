@@ -73,12 +73,6 @@ class TreeNode {
   }
 }
 
-class TreeInfo {
-  constructor(currentSum, maxSum) {
-    this.maxSum = maxSum;
-    this.currentSum = currentSum;
-  }
-}
 //Scaler
 function levelOrderTraversal(A) {
   let root = new TreeNode(A[0]);
@@ -127,6 +121,12 @@ console.log(ans);
       / \
      3   4
 */
+class TreeInfo {
+  constructor(currentSum, maxSum) {
+    this.maxSum = maxSum;
+    this.currentSum = currentSum;
+  }
+}
 function maxSumPathInBinaryTree(root) {
   if (root === null) {
     return new TreeInfo(Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY);

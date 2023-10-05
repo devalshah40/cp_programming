@@ -103,42 +103,44 @@ class TreeNode {
 }
 let arr;
 // arr = [1, 2, 3, 4, 5, -1, 6, -1, -1, -1, -1, -1, -1];
-arr = [1, 2, 3, 4, 5, -1, -1, -1, -1, -1, 6, -1, -1];
-// let ans = levelOrderTraversal(arr);
-let ans = levelOrderTraversalScaler(arr);
-console.log(ans);
+arr = [1, 2, -1, 4, 5, -1, 6, -1, -1, -1, -1];
+// arr = [1, 2, 3, 4, 5, -1, -1, -1, -1, -1, 6, -1, -1];
 
-function levelOrderTraversal(arr) {
-  if (arr.length === 0) {
-    return null;
-  }
-  const root = new TreeNode(arr[0]);
-  const q = new Queue();
-  q.enqueue(root);
-  let secondIndex = 1;
-  let queueSize = 1;
-  while (q.size() > 0) {
-    // let node = q.dequeue();
-    for (let i = 0; i < 1 << queueSize; i++) {
-      if (i % 2 === 0) {
-        node = q.dequeue();
-      }
-      const newIndex = i + secondIndex;
-      const newNode = new TreeNode(arr[newIndex]);
-      if (node && newNode.data !== -1) {
-        if (i % 2 === 0) {
-          node.left = newNode;
-        } else {
-          node.right = newNode;
-        }
-        q.enqueue(newNode);
-      }
-    }
-    secondIndex += 1 << queueSize;
-    queueSize++;
-  }
-  return root;
-}
+let ans;
+// ans = levelOrderTraversalScaler(arr);
+// console.log(ans);
+
+// function levelOrderTraversal(arr) {
+//   if (arr.length === 0) {
+//     return null;
+//   }
+//   const root = new TreeNode(arr[0]);
+//   const q = new Queue();
+//   q.enqueue(root);
+//   let secondIndex = 1;
+//   let queueSize = 1;
+//   while (q.size() > 0) {
+//     // let node = q.dequeue();
+//     for (let i = 0; i < 1 << queueSize; i++) {
+//       if (i % 2 === 0) {
+//         node = q.dequeue();
+//       }
+//       const newIndex = i + secondIndex;
+//       const newNode = new TreeNode(arr[newIndex]);
+//       if (node && newNode.data !== -1) {
+//         if (i % 2 === 0) {
+//           node.left = newNode;
+//         } else {
+//           node.right = newNode;
+//         }
+//         q.enqueue(newNode);
+//       }
+//     }
+//     secondIndex += 1 << queueSize;
+//     queueSize++;
+//   }
+//   return root;
+// }
 
 //Scaler
 function levelOrderTraversalScaler(A) {
@@ -147,7 +149,7 @@ function levelOrderTraversalScaler(A) {
   q.push(root);
   let i = 1;
   while (q.length > 0) {
-    let cur = q.pop();
+    let cur = q.shift();
 
     if (cur == null) {
       continue;
@@ -167,8 +169,8 @@ function levelOrderTraversalScaler(A) {
     } else {
       cur.right = new TreeNode(val_right);
     }
-    q.unshift(cur.left);
-    q.unshift(cur.right);
+    q.push(cur.left);
+    q.push(cur.right);
   }
   return root;
 }
