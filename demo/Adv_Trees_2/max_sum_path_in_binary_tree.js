@@ -151,6 +151,16 @@ function maxSumPathInBinaryTree(root) {
   );
 }
 
+let global_max = Number.NEGATIVE_INFINITY;
+
+function maxPathAndGlobalUpdate(root) {
+  if (root == null) return 0;
+  let l = Math.max(0, maxPathAndGlobalUpdate(root.left));
+  let r = Math.max(0, maxPathAndGlobalUpdate(root.right));
+  global_max = Math.max(global_max, l + r + root.data);
+  return root.data + Math.max(l, r);
+}
+
 /*
 Hint 1
 This is a classical DP on tree problem.

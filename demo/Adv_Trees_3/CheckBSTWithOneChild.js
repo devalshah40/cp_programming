@@ -1,12 +1,6 @@
 /*
 Q1. Check for BST with One Child
-Unsolved
-feature icon
-Get your doubts resolved blazing fast with Chat GPT Help
-Check Chat GPT
-feature icon
-Using hints is now penalty free
-Use Hint
+
 Problem Description
 
 Given preorder traversal of a binary tree, check if it is possible that it is also a preorder traversal of a Binary Search Tree (BST), where each internal node (non-leaf nodes) have exactly one child.
@@ -85,7 +79,7 @@ function solve(arr) {
       left = cur + 1;
     } else if (next < arr[i]) {
       right = cur - 1;
-    }
+    } 
 
     if (!(next >= left && next <= right)) {
       isSameTraversal = false;
@@ -96,7 +90,8 @@ function solve(arr) {
 }
 
 let arr;
-arr = [1, 5, 6, 4];
+arr = [4, 10, 5, 8];
+// arr = [1, 5, 6, 4];
 const ans = solve(arr);
 console.log(ans);
 /*
