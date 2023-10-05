@@ -142,3 +142,88 @@ function preOrder(root1, root2) {
 let ans;
 ans = preOrder(root1, root2);
 console.log(ans);
+
+function isSameTree(rootA, rootB) {
+  if (rootA === null && rootB === null) {
+    return true;
+  } else if (rootA === null || rootB === null) {
+    return false;
+  } else {
+    return (
+      rootA.data === rootB.data &&
+      isSameTree(rootA.left, rootB.left) &&
+      isSameTree(rootA.right, rootB.right)
+    );
+  }
+}
+
+ans = isSameTree(root1, root2) ? 1 : 0;
+console.log(ans);
+/*
+Hint 1
+Think about solving recursively.
+
+Call each left and right child simultaneously and check that both are the same or not.
+
+Solution Approach
+When are the two trees the same?
+When the root values are the same, the left subtree of both trees is the same, and the right subtree of both trees is the same.
+
+Can you think of a straightforward recursive solution based on the above fact?
+
+Check if nodes of both trees are not NULL, and their values are equal.
+If both checks are true, do the same for the child nodes recursively,
+till we reach the leaf nodes.
+
+// Definition for a  binary tree node
+//     function TreeNode(data){
+//         this.data = data
+//         this.left = null
+//         this.right = null
+//}
+
+module.exports = {
+    //param a : root node of tree
+    //param b : root node of tree
+    //return an integer
+    isSameTree: function (a, b) {
+        var recF = function (rootA, rootB) {
+            if (rootA === null && rootB === null) {
+                return true;
+            } else if (rootA === null || rootB === null) {
+                return false;
+            } else {
+                return rootA.data === rootB.data && recF(rootA.left, rootB.left) && recF(rootA.right, rootB.right);
+            }
+        };
+        return recF(a, b) ? 1 : 0;
+    }
+};
+
+/**
+ * Definition for binary tree
+ * class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+public class Solution {
+    public int isSameTree(TreeNode A, TreeNode B) {
+        return sameTree(A, B);
+    }
+
+    public int sameTree(TreeNode A, TreeNode B) {
+        if (A == null && B == null)
+            return 1;
+        if (A == null || B == null)
+            return 0;
+        if (A.val != B.val)
+            return 0;
+
+        int num = 1;
+        num = num & sameTree(A.left, B.left) & sameTree(A.right, B.right);
+        return num;
+    }
+}
+*/
