@@ -96,8 +96,8 @@ class TreeNode {
     4   7  13  
 */
 let arr;
-// arr = [8, 3, 10, 1, 6, -1, 20, -1, -1, 4, 7, 13, -1, -1, -1, -1, -1, -1, -1];
-arr = [3, -1, 4, -1, -1];
+arr = [8, 3, 10, 1, 6, -1, 20, -1, -1, 4, 7, 13, -1, -1, -1, -1, -1, -1, -1];
+// arr = [3, -1, 4, -1, -1];
 let root = levelOrderTraversalScaler(arr);
 console.log(root);
 
@@ -131,10 +131,12 @@ function levelOrderTraversalScaler(A) {
   return root;
 }
 
-let curIndex = 1,
-  searchIndex;
+let curIndex, searchIndex;
+
 // searchIndex = 10;
-(searchIndex = 2), finalAns;
+curIndex = 1;
+searchIndex = 2;
+let finalAns;
 
 function inOrderTraversal(root) {
   if (root === null) {
@@ -153,6 +155,24 @@ function inOrderTraversal(root) {
 
 inOrderTraversal(root);
 console.log(finalAns);
+
+function inOrderTraversalScaler(root) {
+  if (root === null) {
+    return;
+  }
+
+  inOrderTraversalScaler(root.left);
+  if (--curIndex === 0) {
+    finalAns = root.data;
+  }
+  inOrderTraversalScaler(root.right);
+}
+
+curIndex = 5;
+searchIndex = 5;
+inOrderTraversalScaler(root);
+console.log(finalAns);
+
 /*
 Hint 1
 Think about the property of binary search tree and how it can help you.

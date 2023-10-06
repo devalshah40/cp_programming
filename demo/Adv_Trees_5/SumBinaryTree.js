@@ -1,12 +1,6 @@
 /*
 Q3. Sum binary tree or not
-Solved
-feature icon
-Get your doubts resolved blazing fast with Chat GPT Help
-Check Chat GPT
-feature icon
-Using hints is now penalty free
-Use Hint
+
 Problem Description
 Given a binary tree. Check whether the given tree is a Sum-binary Tree or not.
 

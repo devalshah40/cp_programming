@@ -179,6 +179,24 @@ function postOrder(root) {
   totalSum -= root.data;
 }
 
+function preOrder(root) {
+  if (root === null) {
+    return false;
+  }
+  totalSum += root.data;
+  if (root.left === null && root.right === null && totalSum === requiredSum) {
+    return true;
+  }
+  let isFound = preOrder(root.left);
+  if (!isFound) {
+    isFound = preOrder(root.right);
+  }
+  totalSum -= root.data;
+  return isFound;
+}
+preOrder(root);
+console.log(isAvailable);
+
 /*
 Hint 1
 Can you traverse the tree while keeping the sum from root to current node?
@@ -191,8 +209,8 @@ You just need to keep a track of the sum from the root to the current node.
 Then it becomes a question of just checking if the current node is a leaf node, and if so, do the sum match.
 
 var hasPathSum = function (root, sum) {
-  if (!root) return false;
-  if (!root.left && !root.right) {
+  if (root === null) return false;
+  if (root.left === null && root.right === null) {
     return sum === root.data;
   } else {
     return (

@@ -74,7 +74,15 @@ class TreeNode {
 let preOrderArr, inOrderArr;
 // preOrderArr = [1, 2, 4, 8, 5, 3, 6, 7];
 // inOrderArr = [4, 8, 2, 5, 1, 6, 3, 7];
-
+/*
+      8
+     / \
+    3   10
+   / \    \ 
+  1   6    20
+     / \   /
+    4   7  13  
+*/
 preOrderArr = [8, 3, 1, 6, 4, 7, 10, 20, 13];
 inOrderArr = [1, 3, 4, 6, 7, 8, 10, 13, 20];
 
