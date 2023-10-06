@@ -51,12 +51,12 @@ Explanation 1:
 
  The possible BST is:
             4
-             \
-             10
+             \ 
+             10 (5, 00)
              /
-             5
-              \
-              8
+             5 (5, 9)
+              \ 
+              8 (6, 9)
 Explanation 2:
 
  There is no possible BST which have the above preorder traversal.
@@ -79,7 +79,7 @@ function solve(arr) {
       left = cur + 1;
     } else if (next < arr[i]) {
       right = cur - 1;
-    } 
+    }
 
     if (!(next >= left && next <= right)) {
       isSameTraversal = false;

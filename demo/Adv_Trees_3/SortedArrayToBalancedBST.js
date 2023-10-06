@@ -138,10 +138,7 @@ class TreeInfo {
 function sortedArrayToBST(nums) {
   return buildBST(nums, 0, nums.length - 1);
   function buildBST(nums, low, high) {
-    if (low < 0 || high > nums.length - 1) {
-      return null;
-    }
-    if (nums.length == 0 || low > high) {
+    if (low < 0 || high > nums.length - 1 || low > high) {
       return null;
     }
     let mid = low + Math.floor((high - low) / 2);
@@ -153,6 +150,7 @@ function sortedArrayToBST(nums) {
 }
 let nums;
 nums = [1, 2, 3, 5, 10];
+// nums = [];
 
 let ans = sortedArrayToBST(nums);
 console.log(ans);
