@@ -191,6 +191,27 @@ function commonNodesInBST(root1, root2) {
   }
   return sum;
 }
+/*
+Hint 1
+Inorder Traversal of BST return an sorted array.
+
+Also think of finding intersection of two sorted arrays using two pointers and try to apply it on this question.
+
+Solution Approach
+Method 1 (Linear Time) We can find common elements in O(n) time.
+
+1) Do inorder traversal of first tree and store the traversal in an auxiliary array ar1[].
+2) Do inorder traversal of second tree and store the traversal in an auxiliary array ar2[]
+3) Find intersection of ar1[] and ar2[].
+
+Time complexity of this method is O(m+n) where m and n are number of nodes in first and second tree respectively.
+This solution requires O(m+n) extra space.
+
+Method 2 (Linear Time and limited Extra Space) We can find common elements in O(n) time and O(h1 + h2) extra space where h1 and h2 are heights of first and second BSTs respectively.
+
+The idea is to use iterative inorder traversal. We use two auxiliary stacks for two BSTs. Since we need to find common elements, whenever we get same element, we add it to the sum .
+
+*/
 //param A : root node of tree
 //param B : root node of tree
 //return an integer
