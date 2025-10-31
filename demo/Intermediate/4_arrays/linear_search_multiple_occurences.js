@@ -44,12 +44,12 @@ Explanation 2:
 There is no element equal to 3 in the array.
 */
 
-let num = 2;
-let arr = [1, 2, 2];
-let numOfOccurence = 0;
-for (let i = 0; i < arr.length; i++) {
-  if (arr[i] === num) {
-    numOfOccurence++;
-  }
-}
-console.log(numOfOccurence);
+// let num = 2;
+// let arr = [1, 2, 2];
+// let numOfOccurence = 0;
+// for (let i = 0; i < arr.length; i++) {
+//   if (arr[i] === num) {
+//     numOfOccurence++;
+//   }
+// }
+// console.log(numOfOccurence);

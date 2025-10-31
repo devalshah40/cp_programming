@@ -58,12 +58,14 @@ let n = arr.length;
 
 // let index = equilibriumUsing2PrefixSum(arr, n);
 // console.log(index);
+let index = equilibriumUsing2PrefixSum1(arr, n);
+console.log(index);
 
 // let index1 = equilibrium(arr, n);
 // console.log(index1);
 
-let index2 = equilibriumUsing1PrefixSum(arr, n);
-console.log(index2);
+// let index2 = equilibriumUsing1PrefixSum(arr, n);
+// console.log(index2);
 
 // Program to find equilibrium index of an array using Prefix sum
 // Time Complexity: O(N)
@@ -92,6 +94,42 @@ function equilibriumUsing2PrefixSum(a, n) {
     } else {
       rev[i] = rev[i + 1] + a[i];
     }
+  }
+  console.log(rev);
+
+  // Checking if forward prefix sum
+  // is equal to rev prefix
+  // sum
+  for (let i = 0; i < n; i++) {
+    if (forward[i] == rev[i]) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+// Program to find equilibrium index of an array using Prefix sum
+// Time Complexity: O(N)
+// Auxiliary Space: O(N)
+function equilibriumUsing2PrefixSum1(a, n) {
+  if (n == 1) return 0;
+  const forward = [];
+  forward[-1] = 0;
+
+  const rev = [];
+  rev[n] = 0;
+
+  // Taking the prefixsum from front end array
+  for (let i = 0; i < n; i++) {
+    forward[i] = forward[i - 1] + a[i];
+  }
+  console.log(arr);
+  console.log(forward);
+
+  // Taking the prefixsum from back end of array
+  // start from 4,3,2,1,0
+  for (let i = n - 1; i >= 0; i--) {
+    rev[i] = rev[i + 1] + a[i];
   }
   console.log(rev);
 
